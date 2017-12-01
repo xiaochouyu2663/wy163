@@ -22,7 +22,7 @@ const webpackConfig = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json'],     //extensions这个配置，在应用组件的时候不需要添加后缀名就可以引用，如果不用，在引用组件的时候就需要添加后缀名 
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
