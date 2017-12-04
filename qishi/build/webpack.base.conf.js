@@ -5,6 +5,9 @@ var projectRoot = path.resolve(__dirname, '../')
 var glob = require('glob');
 var entries = getEntry(['./src/module/*.js', './src/module/**/*.js']); // 获得入口js文件
 
+const vuxLoader = require('vux-loader')
+
+
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
@@ -12,7 +15,7 @@ var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
-module.exports = {
+const webpackConfig = {
   entry: entries,
   output: {
     path: config.build.assetsRoot,
@@ -77,6 +80,9 @@ module.exports = {
   }
 }
 
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: ['vux-ui']
+})
 function getEntry(globPath) {
   var entries = {},
     basename, tmp, pathname;
