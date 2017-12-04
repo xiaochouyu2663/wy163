@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <img src="./images/logo.png">
-    <hello></hello>
+    
+   <a href="detail.html">sdfsf</a>
   </div>
 </template>
 
 <script>
-  import 'common/css/reset.css';
-  import Hello from 'components/Hello/Hello'
+  // import 'common/css/reset.css';
+ 
 
   export default {
     name: 'app',
     components: {
-      Hello
+      
     }
   }
 </script>
