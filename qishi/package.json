@@ -9,7 +9,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "vue": "^2.0.1",
+    "vue-axios": "^2.0.2",
     "vux": "^2.7.4"
   },
   "devDependencies": {
