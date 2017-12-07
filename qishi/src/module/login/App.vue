@@ -19,6 +19,7 @@
       <group>
         <x-button type="primary" style="width:200px;background:4db90a" @click.native="loginFn(username,password)">登录</x-button>
       </group>
+      <toast v-model="isShow" :time="2000" type="text" width="200px" @on-hide="onHide" :is-show-mask="true" :text="showText" position="middle"></toast>
     </view-box>
   </div>
 </template>
@@ -26,39 +27,45 @@
 <script>
   import axios from 'axios'
 
-  import {ViewBox,XHeader,Group,Cell,XInput,XButton} from 'vux'
+  import {ViewBox,XHeader,Group,Cell,XInput,XButton,Toast} from 'vux'
   export default {
     name: 'app',
     components: {
-      ViewBox,XHeader,Group,Cell,XInput,XButton
+      ViewBox,XHeader,Group,Cell,XInput,XButton,Toast
     },
     data(){
       return {
         username:'',
-        password:''
+        password:'',
+        isShow:false,
+        showText:''
       }
     },
     methods:{
       loginFn(user,pwd){
-        axios.get('http://localhost/tp5/public/index.php?',{
+        axios.get('http://localhost/tp5/public/index.php/index/index/login?',{
           params:{
             username:user,
             password:pwd
           }
         })
         .then(res=>{
-          console.log(res)
+          console.log(res.data.result)
           if(res.data.result=="success"){
             window.location.href="register.html"
-            console.log('登录成功')
           }else{
-            console.log(res.data.result)
+            this.isShow=true;
+            this.showText=res.data.result;
+            
           }
         })
         .catch(err=>{
           console.log(err)
         })
         
+      },
+      onHide(){
+        console.log('已经隐藏了')
       }
     }
   }
