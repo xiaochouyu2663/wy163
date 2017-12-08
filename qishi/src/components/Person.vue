@@ -1,12 +1,9 @@
 <template>
-    <div>
-        122342n
-    </div>
+  <div>sdfs</div>
 </template>
 <script>
 export default {
   
-
 }
 </script>
 <style>
