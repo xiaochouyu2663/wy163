@@ -6,7 +6,7 @@
          <span slot="icon" >
         <!--  <img src="~common/images/dui.png" alt="">-->
         </span> 
-        <span slot="label">1213</span>
+        <span slot="label">首页</span>
       </tabbar-item>
       <tabbar-item link="/shopcar" show-dot badge="0" icon-class="iconfont icon-gouwuche">
          <span slot="icon">

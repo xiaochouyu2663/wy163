@@ -26,7 +26,7 @@
 
 <script>
   import axios from 'axios'
-
+  
   import {ViewBox,XHeader,Group,Cell,XInput,XButton,Toast} from 'vux'
   export default {
     name: 'app',
@@ -42,7 +42,12 @@
       }
     },
     methods:{
+      
       loginFn(user,pwd){
+        this.$vux.loading.show({
+         text: '正在加载中'
+        })
+
         axios.get('http://localhost/tp5/public/index.php/index/index/login?',{
           params:{
             username:user,
@@ -50,9 +55,12 @@
           }
         })
         .then(res=>{
+          this.$vux.loading.hide()
           console.log(res.data.result)
           if(res.data.result=="success"){
-            window.location.href="register.html"
+            this.isShow=true;
+            this.showText='登录成功';
+            window.location.href="main.html"
           }else{
             this.isShow=true;
             this.showText=res.data.result;
@@ -60,6 +68,7 @@
           }
         })
         .catch(err=>{
+          this.$vux.loading.hide()
           console.log(err)
         })
         

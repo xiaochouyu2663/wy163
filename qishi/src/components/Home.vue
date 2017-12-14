@@ -4,7 +4,7 @@
       <x-header class="header" style="" slot="header" :left-options="{showBack:false,backText:''}">
         <div>康妆商城</div>
       </x-header>
-      <scroller class="my_scroller" refreshText="loading" :on-refresh="refresh" :on-infinite="infinite">
+      <scroller class="my_scroller" :on-infinite="infinite">
         <swiper :list="swiperList" auto loop dots-position="right">
           
         </swiper>
@@ -13,8 +13,8 @@
           <tab-item>小白系列</tab-item>
           <tab-item>授权系列</tab-item>
         </tab>
-        <div class="product_list" v-for="item in productList">
-          <div class="product_list_item">
+        <div class="product_list" >
+          <div class="product_list_item" v-for="item in productList">
             <img :src="item.product_image" alt="">
             <p>{{item.product_name}}</p>
             <span>{{item.product_price}}</span>
@@ -59,7 +59,13 @@ export default {
              img:'http://localhost/tp5/public/static/'+item.product_image
            }
          })
-         this.productList=res.data;
+         this.productList=res.data.map(item=>{
+           return {
+             product_image:'http://localhost/tp5/public/static/'+item.product_image,
+             product_name:item.product_name,
+              product_price:item.product_price
+           }
+         })
          console.log(this.swiperList);
        })
        .catch(res=>{
@@ -104,5 +110,11 @@ export default {
   .tabnar{
     margin-top:15px;
   }
-
+  .my_scroller{
+    padding-bottom:50px;
+  }
+  .product_list_item{
+    background:#fff;
+    margin-bottom:10px;
+  }
 </style>
