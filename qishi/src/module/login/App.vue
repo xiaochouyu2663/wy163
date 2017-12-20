@@ -69,7 +69,7 @@
         })
         .catch(err=>{
           this.$vux.loading.hide()
-          console.log(err)
+          console.log('cuowu'+err)
         })
         
       },

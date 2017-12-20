@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <view-box>
-      <x-header class="header" style="" slot="header" :left-options="{showBack:false,backText:''}">
+  <div id="apper">
+    <view-box ref="viewBoxs" id="wk_list">
+      <x-header @on-click-title="getscroll()" class="header" style="" slot="header" :left-options="{showBack:false,backText:''}">
         <div>康妆商城</div>
       </x-header>
       <scroller class="my_scroller" :on-infinite="infinite">
@@ -14,10 +14,13 @@
           <tab-item>授权系列</tab-item>
         </tab>
         <div class="product_list" >
-          <div class="product_list_item" v-for="item in productList">
-            <img :src="item.product_image" alt="">
-            <p>{{item.product_name}}</p>
-            <span>{{item.product_price}}</span>
+          <div class="product_list_item" v-for="item in productList" >
+            <a :href="'detail.html?proid='+item.product_id">
+              <img :src="item.product_image" alt="">
+              <p>{{item.product_name}}</p>
+              <span>{{item.product_price}}</span>
+            </a>
+            
           </div>
         </div>
       </scroller>
@@ -44,7 +47,7 @@ export default {
     }
   },
   methods:{
-  
+    
   },
   created(){
         //获取banner数据 
@@ -52,6 +55,7 @@ export default {
          params:{}
        })
        .then(res=>{
+        //  console.log(res)
          this.swiperList=res.data.map(item=>{
            return {
              src:'',
@@ -61,19 +65,29 @@ export default {
          })
          this.productList=res.data.map(item=>{
            return {
-             product_image:'http://localhost/tp5/public/static/'+item.product_image,
-             product_name:item.product_name,
-              product_price:item.product_price
+            product_image:'http://localhost/tp5/public/static/'+item.product_image,
+            product_name:item.product_name,
+            product_price:item.product_price,
+            product_id:item.product_id
            }
          })
-         console.log(this.swiperList);
+         
        })
        .catch(res=>{
          console.log(res)
        })
-
-        
-      }
+  },
+  mounted(){
+    
+    this.$nextTick(function () {
+    var oScroDom=this.$refs.viewBoxs.getScrollBody();
+      console.log(oScroDom)
+      console.log(this.$refs.viewBoxs.scrollTo)
+      this.$refs.viewBoxs.scrollTo(0,'34px');
+      console.log(this.$refs.viewBoxs.getScrollTop())
+  })
+    
+  }
 }
 </script>
 
@@ -87,8 +101,9 @@ export default {
   }
   img{
     width:100%;
+    display:block;
   }
-  #app{
+  #apper{
     height:100%;
     .my_scroller{
     top:46px;

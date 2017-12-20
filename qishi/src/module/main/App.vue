@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <view-box>
-    <tabbar icon-class="iconfont icon-denglu">
+    
+    <tabbar icon-class="iconfont icon-denglu" class="my-footer">
       <tabbar-item link="/home" selected icon-class="iconfont icon-caidantubiao-02">
          <span slot="icon" >
         <!--  <img src="~common/images/dui.png" alt="">-->
@@ -22,7 +22,7 @@
       </tabbar-item>
     </tabbar>
     <router-view></router-view>
-    </view-box>
+    
   </div>
 </template>
 <script>
@@ -50,5 +50,8 @@ export default {
 }
 .iconfont{
   font-size:20px;
+}
+.my-footer.weui-tabbar{
+  position:fixed;
 }
 </style>

@@ -1,0 +1,83 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none; }
+
+body {
+  background: #f1f1f1; }
+
+.form-fields {
+  background: white;
+  margin: 0.4rem 0;
+  line-height: 0.9rem;
+  font-size: 0.32rem; }
+  .form-fields .name-aa {
+    box-sizing: border-box;
+    padding: 0 0.3rem;
+    border-bottom: 0.02rem solid #ccc; }
+    .form-fields .name-aa span {
+      width: 1.6rem;
+      display: inline-block;
+      text-align: center; }
+    .form-fields .name-aa input {
+      width: 4rem;
+      margin-left: 0.2rem;
+      height: 0.52rem;
+      outline: none;
+      border: none;
+      font-size: 0.32rem; }
+  .form-fields .select-aa {
+    border-bottom: 0.02rem solid #ccc;
+    box-sizing: border-box;
+    padding: 0.24rem 0;
+    display: flex;
+    justify-content: space-around; }
+    .form-fields .select-aa select {
+      border: none;
+      font-size: 0.32rem;
+      width: 2rem; }
+
+.default-aa {
+  width: 100%;
+  background: white;
+  margin-bottom: 0.4rem;
+  font-size: 0.32rem;
+  box-sizing: border-box;
+  padding: 0 0.3rem;
+  position: relative; }
+  .default-aa .defalt-text {
+    line-height: 1rem;
+    float: left; }
+  .default-aa .default-icon-1 {
+    display: inline-block;
+    float: right;
+    border: 0.04rem solid #ccc;
+    width: 0.3rem;
+    height: 0.3rem;
+    line-height: 1rem;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.32rem; }
+    .default-aa .default-icon-1 i {
+      display: block;
+      position: absolute;
+      right: -0.1rem;
+      top: -0.38rem;
+      font-size: 0.32rem; }
+
+.btn-aa {
+  width: 100%;
+  line-height: 1rem;
+  background: #00c7f2;
+  border-radius: 0.1rem;
+  font-size: 0.36rem;
+  color: white;
+  text-align: center; }
+
+.default-aa::after {
+  content: '';
+  display: block;
+  clear: both; }
+
+/*# sourceMappingURL=new-address.css.map */

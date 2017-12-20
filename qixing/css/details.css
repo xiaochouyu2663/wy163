@@ -1,0 +1,121 @@
+html,
+body {
+  height: 100%;
+  background-color: #F1F1F1; }
+
+.details_container {
+  padding-top: 0.8rem; }
+
+.details_container .details_box {
+  box-sizing: border-box;
+  padding: 0 0.16rem; }
+
+.details_container .details_box .details_list {
+  margin-top: 0.22rem;
+  border: 1px solid #bbbbbb;
+  border-radius: 0.1rem;
+  background-color: #fff; }
+
+.details_list_title {
+  font-size: 0.28rem;
+  /* padding-bottom: 0.2rem; */
+  padding: 0.2rem; }
+
+.details_list_main {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  border-top: 1px solid #bbbbbb;
+  border-bottom: 1px solid #bbbbbb;
+  padding: 0.2rem; }
+
+.details_img {
+  width: 1.5rem;
+  height: 1.08rem;
+  background: red; }
+  .details_img img{
+    width:100%;
+    height:100%;
+  }
+
+.details_shopname {
+  flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  font-size: 0.28rem;
+  margin-left: 0.3rem; }
+
+.details_price {
+  font-size: 0.24rem; }
+
+.details_sum {
+  font-size: 0.28rem;
+  text-align: right;
+  color: #cccccc; }
+
+.details_delete_price {
+  color: #cccccc; }
+
+.details_list_footer {
+  padding: 0.2rem;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 0.24rem; }
+
+.details_list_pay {
+  font-size: 0.28rem; }
+
+.pay_money {
+  color: #FA5E1B; }
+
+.details_list_discount,
+.details_list_freight,
+.details_list_pay {
+  overflow: hidden;
+  width: 100%; }
+
+.details_list_freight {
+  padding: 0.1rem 0; }
+
+.details_list_discount p {
+  float: left; }
+
+.details_list_freight p {
+  float: left; }
+
+.details_list_pay p {
+  float: left; }
+
+.details_list_freight .details_list_fr {
+  float: right; }
+
+.details_list_discount .details_list_fr {
+  float: right; }
+
+.details_list_pay .pay_money {
+  float: right; }
+
+.details_list_time {
+  font-size: 0.24rem;
+  padding: 0 0.2rem 0.2rem;
+  border: 1px solid #bbbbbb;
+  border-radius: 0.1rem;
+  margin-top: 0.22rem;
+  background: #fff; }
+
+.details_time {
+  padding-top: 0.15rem;
+  overflow: hidden;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex; }
+
+.address {
+  display: inline-block;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1; }

@@ -1,0 +1,205 @@
+html,
+body {
+    height: 100%;
+    background-color: #F1F1F1;
+}
+
+.upgrade_container {
+    width: 100%;
+    padding-top: 0.8rem;
+    padding-bottom: 2.2rem;
+}
+
+.upgrade_container .upgrade_header {
+    position: relative;
+    width: 100%;
+    height: 0.8rem;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 0.14rem 0.36rem;
+    border-bottom: 1px solid #f1f1f1;
+    margin: 0.1rem 0;
+}
+
+.upgrade_container .upgrade_list {
+    background-color: #fff;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+}
+
+.upgrade_container .upgrade_list .upgrad_list_box {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    flex: 1;
+    position: relative;
+}
+
+.upgrade_container .upgrade_list .upgrad_list_box:after {
+    content: '';
+    position: absolute;
+    width: 5.3rem;
+    height: 1px;
+    background-color: #f1f1f1;
+    bottom: 0rem;
+    left: 1.8rem;
+}
+
+.upgrade_container .upgrade_list .upgrad_list_box a {
+    position: relative;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    flex: 1;
+    color: #000000;
+}
+
+.upgrade_container .upgrade_list .upgrad_list_box a .upgrade_list_img {
+    width: 1.6rem;
+    height: 1.3rem;
+    background: red;
+}
+.upgrade_container .upgrade_list .upgrad_list_box a .upgrade_list_img>img{
+    width: 100%;
+    height:100%;
+    border:none;
+}
+.upgrade_container .upgrade_list .upgrad_list_box a .upgrade_list_panel {
+    flex: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    margin-left: 0.2rem;
+    padding: 0.1rem 0;
+    font-size: 0.28rem;
+    box-sizing: border-box;
+}
+
+.upgrade_container .upgrade_list .upgrad_list_box a .upgrade_list_panel .upgrade_shop_sort {
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.upgrade_container .upgrade_list .upgrad_list_box a .upgrade_list_panel .upgrade_shop_sort .upgrade_shop_price {
+    margin-top: 0.1rem;
+}
+
+.upgrade_container .upgrade_list .upgrade_count {
+    margin-top: 0.66rem;
+}
+
+.upgrade_container .upgrade_list .upgrade_count p {
+    display: inline-block;
+}
+
+.upgrade_container .upgrade_list .upgrade_count .upgrade_reduce,
+.upgrade_container .upgrade_list .upgrade_count .upgrade_add {
+    width: 0.72rem;
+    height: 0.72rem;
+    text-align: center;
+    line-height: 0.72rem;
+    font-size: 0.5rem;
+}
+
+.upgrade_container .upgrade_list .upgrade_count .upgrade_add {
+    font-size: 0.45rem;
+}
+
+.upgrade_container .upgrade_list .upgrade_count .upgrade_num {
+    width: 0.4rem;
+    height: 0.52rem;
+    text-align: center;
+    line-height: 0.52rem;
+    font-size: 0.36rem;
+}
+
+.mask {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999999;
+}
+
+.mask .mask_box {
+    width: 4rem;
+    height: 4.7rem;
+    background-color: #fff;
+    border-radius: 0.1rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    font-size: 0.28rem;
+}
+
+.mask .mask_box p {
+    line-height: 1.5;
+}
+
+.mask .mask_box .mask_btn {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 0.3rem;
+}
+
+.mask .mask_box .mask_btn a {
+    text-align: center;
+    font-size: 0.28rem;
+    color: #000000;
+    width: 100%;
+    display: block;
+    margin-top: 0.35rem;
+    padding: 0.12rem 0;
+    background: #fff;
+    border: 1px solid #bbbbbb;
+    border-radius: 0.1rem;
+}
+
+.upgrade_select p {
+    font-size: 0.28rem;
+    color: #bbbbbb;
+    padding: 0.1rem 0.2rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 1.65rem;
+    /* z-index: -111; */
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.upgrade_select .select {
+    position: fixed;
+    max-width: 750px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0.9rem;
+    width: 100%;
+    width: 100%;
+    height: 0.8rem;
+    background-color: #fff;
+    border: none;
+    text-align-last: center;
+    font-size: 0.32rem;
+    z-index: 999;
+}
+
+.upgrade_select .select option {
+    text-align: center;
+}
