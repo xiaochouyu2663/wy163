@@ -55,30 +55,30 @@ export default {
     infinit(done){
 
      var self=this;
-        setTimeout(()=>{
-          console.log('下拉加载')
-          axios.get('http://localhost/tp5/public/index.php/index/index/getBanner',{
-            params:{}
-          })
-          .then(res=>{
-            self.productList=self.productList.concat(res.data.map(item=>{
-                return {
-                  product_image:'http://localhost/tp5/public/static/'+item.product_image,
-                  product_name:item.product_name,
-                  product_price:item.product_price,
-                  product_id:item.product_id
-                }
-              })
-            )
-          })
-          .catch(res=>{
-            console.log(res)
-          })
+        // setTimeout(()=>{
+        //   console.log('下拉加载')
+        //   axios.get('http://localhost/tp5/public/index.php/index/index/getBanner',{
+        //     params:{}
+        //   })
+        //   .then(res=>{
+        //     self.productList=self.productList.concat(res.data.map(item=>{
+        //         return {
+        //           product_image:'http://localhost/tp5/public/static/'+item.product_image,
+        //           product_name:item.product_name,
+        //           product_price:item.product_price,
+        //           product_id:item.product_id
+        //         }
+        //       })
+        //     )
+        //   })
+        //   .catch(res=>{
+        //     console.log(res)
+        //   })
           
-           setTimeout(() => {
-            done()
-          })
-        },1500)
+        //    setTimeout(() => {
+        //     done()
+        //   })
+        // },1500)
     },
     refresh(done){
       var self=this;
