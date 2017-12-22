@@ -5,6 +5,9 @@ import router from './router'
 import VueScroller from 'vue-scroller'
 import Vuex from 'vuex'
 
+
+
+
 Vue.use(VueScroller)
 Vue.use(Vuex)
 

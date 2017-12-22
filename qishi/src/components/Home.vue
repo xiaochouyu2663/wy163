@@ -5,8 +5,8 @@
         <div>康妆商城</div>
       </x-header>
       
-        <div slot="default">
-          <scroller class="my_scroller"  ref="scroller" :onRefresh="refresh" refreshText="loading..." :onInfinite="infinit">
+      <div id="wraper" slot="default" ref="wrapper">
+        <div id="wraper-content">
           <swiper :list="swiperList" auto loop dots-position="right">
             
           </swiper>
@@ -25,8 +25,11 @@
               
             </div>
           </div>
-          </scroller>
         </div>
+        <transition name="pullDown">
+          <Loading class="pullDown" v-show="inPullDown" :loadingWord='PullingDownWord'></Loading>
+        </transition>
+      </div>
       
       
     </view-box>
@@ -35,63 +38,137 @@
 
 <script>
 import axios from 'axios'
-
+import BScroll from 'better-scroll'
 import {ViewBox,XHeader,Swiper,Tab,TabItem,Panel} from 'vux';
-
+import Loading from './loading.vue'
+import PullingWord from './pulling-word'
+const PullingUpWord="正在拼命加载中...";
+ const beforePullUpWord="上拉加载更多";
+ const finishPullUpWord="加载完成";
+ 
+ const PullingDownWord="加载中...";
 export default {
   name: 'Home',
   components:{
-    ViewBox,XHeader,Swiper,Tab,TabItem,Panel
+    ViewBox,XHeader,Swiper,Tab,TabItem,Panel,Loading,PullingWord
+  },
+  props: {
+   dataList:{
+    type: Array,
+    default(){
+      return []
+    }
+   },
+   probeType: {
+    type: Number,
+    default: 3
+   },
+   click: {
+    type: Boolean,
+    default: true
+   },  
+   pullDownRefresh: {
+    type: null,
+    default: true
+   },
+   pullUpLoad: {
+    type: null,
+    default: true,
+    threshold:-80
+   },  
   },
   data(){
     return {
       // swiperList:[{ url: 'javascript:', img: 'https://static.vux.li/demo/1.jpg', title: '送你一朵fua' }, { url: 'javascript:', img: 'https://static.vux.li/demo/5.jpg', title: '送你一次旅行', fallbackImg: 'https://static.vux.li/demo/3.jpg' }],
       swiperList:[],
       productList:[],
-      sellerList:[]
+      sellerList:[],
+      scroll:null,
+      inPullUp:false,
+      inPullDown:false,
+      beforePullUpWord,
+      PullingUpWord,
+      PullingDownWord,
+      continuePullUp:true,
     }
   },
   methods:{
-    infinit(done){
-
-     var self=this;
-        // setTimeout(()=>{
-        //   console.log('下拉加载')
-        //   axios.get('http://localhost/tp5/public/index.php/index/index/getBanner',{
-        //     params:{}
-        //   })
-        //   .then(res=>{
-        //     self.productList=self.productList.concat(res.data.map(item=>{
-        //         return {
-        //           product_image:'http://localhost/tp5/public/static/'+item.product_image,
-        //           product_name:item.product_name,
-        //           product_price:item.product_price,
-        //           product_id:item.product_id
-        //         }
-        //       })
-        //     )
-        //   })
-        //   .catch(res=>{
-        //     console.log(res)
-        //   })
-          
-        //    setTimeout(() => {
-        //     done()
-        //   })
-        // },1500)
-    },
-    refresh(done){
+   initScroll() {
+      if (!this.$refs.wrapper) {
+        return
+      }
       var self=this;
-      setTimeout(()=>{
-        console.log('下拉刷新')
-        // self.$refs.scroller.triggerPullToRefresh();  手动刷新
-        done()
-      },1000)
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        probeType: this.probeType,
+        click: this.click,    
+        pullDownRefresh: this.pullDownRefresh,
+        pullUpLoad: {
+          threshold:-80,
+          default:true
+        },
+      })
+    },
+    beforePullUp(){
+      this.PullingUpWord=PullingUpWord;
+      this.inPullUp=true;
+    }, 
+    beforePullDown(){
+      this.disable();
+      this.inPullDown=true;
+    },
+    finish(type){
+      this["finish"+type]();
+      this.enable();
+      this["in"+type]=false; 
+    },
+    disable() {
+      this.scroll && this.scroll.disable()
+    },
+    enable() {
+      this.scroll && this.scroll.enable()
+    },
+    refresh() {
+      this.scroll && this.scroll.refresh()
+    }, 
+    finishPullDown(){
+      this.scroll&&this.scroll.finishPullDown()
+    },
+    finishPullUp(){
+      this.scroll&&this.scroll.finishPullUp()
+    },  
+    loadMore() {        
       
-    }
+        axios.get('http://localhost/tp5/public/index.php/index/index/getBanner',{
+         params:{}
+        })
+        .then(res=>{
+        
+         this.productList=this.productList.concat(res.data.map(item=>{
+            return {
+              product_image:'http://localhost/tp5/public/static/'+item.product_image,
+              product_name:item.product_name,
+              product_price:item.product_price,
+              product_id:item.product_id
+            }
+          }))
+          this.$nextTick(function(){ 
+            console.log('数据已加载')  
+            this.scroll.finishPullUp();                                    
+            this.scroll.refresh();  
+          });
+        })
+        .catch(res=>{
+          console.log(res)
+        })
+                  
+    
+    } 
+  },
+  watched:{
+    
   },
   created(){
-        console.log('created')
+        
         //获取banner数据 
        axios.get('http://localhost/tp5/public/index.php/index/index/getBanner',{
          params:{}
@@ -118,48 +195,39 @@ export default {
        .catch(res=>{
          console.log(res)
        })
+
+       
   },
   beforeCreate(){
-    console.log('beforeCreate')
+    
   },
   beforeMount(){
-    console.log('beforeMount')
-    console.log(this)
+    
   },
   mounted(){
-    // console.log('mounted')
-    // console.log(this.$refs.scroller.getPosition())   //获取scroller当前的位置
-    // setTimeout(() => {
-    //   console.log(this.$refs.scroller.getPosition())
-    //   //this.$refs.scroller.scrollTo(0,1000,true);      //指定scroller到当前的位置
-    //   this.$refs.scroller.scrollBy(0,1000,true)         //指定scroller到当前的位置
+    this.$nextTick(()=>{
+      this.initScroll();
+      this.scroll.on('pullingUp',()=> {
+        console.log('上拉加载。。。')
+        this.loadMore()
+        if(this.continuePullUp){
+          this.beforePullUp();
+          
+          // this.$emit("onPullUp","当前状态：上拉加载");
+        }
+      });
 
 
-    //   this.$refs.scroller.finishPullToRefresh()
-    // }, 5000);
+      this.scroll.on('pullingDown',()=> {
+        console.log('pullingDown')
+        // if(this.continuePullUp){
+        //   this.beforePullUp();
+        //   this.$emit("onPullUp","当前状态：上拉加载");
+        // }
+      });
+    })
     
-
   },
-
-  beforeRouteEnter(to,from,next){
-    console.log(sessionStorage.askPositon)
-    if(!sessionStorage.askPositon || from.path == '/'){//当前页面刷新不需要切换位置
-      sessionStorage.askPositon = '';
-      next();
-    }else{
-      next(vm => {
-          if(vm && vm.$refs.scrollerBottom){//通过vm实例访问this
-            setTimeout(function () {
-              vm.$refs.scrollerBottom.scrollTo(0, sessionStorage.askPositon, false);
-            },0)//同步转异步操作
-          }
-      })
-    }
-  },
-beforeRouteLeave(to,from,next){//记录离开时的位置
-  sessionStorage.askPositon = this.$refs.scrollerBottom && this.$refs.scrollerBottom.getPosition() && this.$refs.scrollerBottom.getPosition().top;
-  next()
-},
 }
 </script>
 
@@ -204,5 +272,14 @@ beforeRouteLeave(to,from,next){//记录离开时的位置
   .product_list_item{
     background:#fff;
     margin-bottom:10px;
+  }
+  #wraper{
+    width:100%;
+    height:100%;
+    overflow: hidden;
+    margin-bottom:10px;
+    #wraper-content{
+      width:100%;
+    }
   }
 </style>
