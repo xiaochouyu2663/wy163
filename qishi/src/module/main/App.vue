@@ -1,50 +1,44 @@
 <template>
   <div id="app">
     
-    <tabbar icon-class="iconfont icon-denglu" class="my-footer">
-      <tabbar-item link="/home" selected icon-class="iconfont icon-caidantubiao-02">
-         <span slot="icon" >
-        <!--  <img src="~common/images/dui.png" alt="">-->
-        </span> 
-        <span slot="label">首页</span>
-      </tabbar-item>
-      <tabbar-item link="/shopcar" show-dot badge="0" icon-class="iconfont icon-gouwuche">
-         <span slot="icon">
-         <!-- <img src="~common/images/shopcar.png" alt="">-->
-        </span> 
-        <span slot="label">购物车</span>
-      </tabbar-item>
-      <tabbar-item link="/person" icon-class="iconfont icon-geren">
-        <span slot="icon"></span>
-        <span slot="label">
-          个人中心
-        </span>
-      </tabbar-item>
-    </tabbar>
-    <router-view></router-view>
     
+    <router-view></router-view>
+    <loading v-model="isLoading"></loading>
   </div>
 </template>
 <script>
-
-import {ViewBox,Tabbar,TabbarItem} from 'vux'
+import { mapState } from 'vuex'
+import {ViewBox,Tabbar,TabbarItem,Loading } from 'vux'
 export default {
   name:'App',
   components:{
-    ViewBox,Tabbar,TabbarItem
+    ViewBox,Tabbar,TabbarItem,Loading
   },
   data(){
     return {
 
     }
-  }
-
+  },
+ computed: {
+    ...mapState({
+      isLoading: vuex_store => vuex_store.vux.isLoading
+    })
+  },
 }
 </script>
 <style  lang="less">
 @import '~vux/src/styles/reset.less';
-// @import '~common/css/reset.css';
 @import '~common/css/iconfont.css';
+ html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+    background: #f1f1f1;
+  }
+  img{
+    width:100%;
+    display: block;
+  }
 #app{
   height:100%;
 }
@@ -53,5 +47,6 @@ export default {
 }
 .my-footer.weui-tabbar{
   position:fixed;
+  
 }
 </style>

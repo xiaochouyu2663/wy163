@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from 'components/Home'
 import Person from 'components/Person'
+import Detail from 'components/Detail'
 
 Vue.use(Router)
 
@@ -9,7 +10,7 @@ export default new Router({
   routes: [
     {
       path:'/',
-      name: 'Home',
+      name: 'Main',
       component: Home
     },
     {
@@ -22,6 +23,12 @@ export default new Router({
       path: '/person',
       name: 'Person',
       component: Person
+    },
+    {
+      path: '/detail/:proid',
+      name: 'Detail',
+      component: Detail
     }
-  ]
+  ],
+  
 })

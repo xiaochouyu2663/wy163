@@ -1,5 +1,5 @@
 <template>
-	<div class="loading"><img src="../common/images/loading.gif"  alt=""><span>{{loadingWord}}</span></div>
+	<div class="loading"><img src="../common/images/loading.gif"  alt=""></div>
 </template>
 
 <script>
@@ -21,17 +21,18 @@ export default {
  	@import '~vux/src/styles/reset.less';
 	.loading{
 		text-align: center;
-		z-index: 100;
+		z-index: 1000;
 		width: 100%;
-		height:1rem;
-		line-height: 1rem;				
+		height:60px;
+					
 		img{
 			margin: 0 auto;
-			width: 0.65rem;
-			height: 0.65rem;
+			width: 30px;
+			height: 30px;
 			vertical-align: middle;
 		}
 		span{
+			font-size:14px;
 			vertical-align: middle;
 			margin-left: 0.14rem;
 			

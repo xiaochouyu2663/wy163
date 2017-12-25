@@ -1,6 +1,10 @@
 <template>
-  <div id="app">
+
+
+
+  <view-box>
     <x-header class="my-header" :left-options="{backText:''}">
+        <!-- <icon slot="overwrite-left"	></icon> -->
       <div>商品详情</div>
     </x-header>
     <card class="product_detail_box" >
@@ -22,30 +26,31 @@
 	    <div slot="content" class="introduce">
 	    	<div class="commodity_title vux-1px" style="display:inline-block;">商品详情</div>
 	    	<div class="commodity_comment">
-          {{pro_detail.introduce}}
-        </div>
+            {{pro_detail.introduce}}
+            </div>
 	    </div>
 	  </card>
     <tabbar class="my-footer">
       <tabbar-item class="addcar" @on-item-click="addcar()">
-        <span slot="label">加入购物车</span>
+        <span slot="label" style="color:#fff;">加入购物车</span>
       </tabbar-item>
       <tabbar-item class="buynow" @on-item-click="buynow()">
-        <span slot="label">立即购买</span>  
+        <span slot="label" style="color:#fff;">立即购买</span>  
       </tabbar-item>
     </tabbar>
-  </div>
+  </view-box>
+  
 </template>
 
 <script>
   import axios from 'axios'
-  import {XHeader,Card,Tabbar, TabbarItem} from 'vux'
+  import {ViewBox,XHeader,Card,Tabbar, TabbarItem,Icon} from 'vux'
  
 
   export default {
-    name: 'app',
+    name:'Detail',
     components: {
-      XHeader,Card,Tabbar, TabbarItem
+      ViewBox,XHeader,Card,Tabbar, TabbarItem,Icon
     },
     data(){
       return {
@@ -60,7 +65,7 @@
         params:{}
       })
       .then(res=>{
-        var oid=window.location.search.slice(7);
+        var oid=this.$route.params.proid;
         var vm=this;
         res.data.forEach(function(v,i,a){
           if(oid==v.product_id){
@@ -73,6 +78,7 @@
       .catch(err=>{
         console.log(err)
       })
+      // console.log(this.$store.state.scrollPath=pos)
     },
     methods:{
       plus(){
@@ -88,7 +94,7 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   @import '~vux/src/styles/reset.less';
   @import '~vux/src/styles/1px.less';
   html,body{
@@ -104,14 +110,13 @@
   .my-header{
     background-color: #4db90a!important;
     color:#fff;
-    position: absolute;
+    position: relative;
     top:0;
     width:100%;
   }
   .product_detail_box.weui-panel{
-    margin-top:0;
+    margin-top:0px;
     background:none;
-    padding-bottom:60px;
   }
   .product_detail_box .product_detail_head{
       margin:10px 0;
@@ -169,14 +174,14 @@
     background:#fff;
     padding:10px;
     font-size:14px;
-    min-height:400px;
+    min-height:200px;
   }
   .weui-tabbar.my-footer{
     position:fixed;
     
     .addcar{
       background:#00aaf2;
-      color:#fff;
+      color:#fff!important;
     }
     .buynow{
       background:#fa5e1b;
@@ -184,6 +189,9 @@
     }
     .weui-tabbar__label{
       color:#fff;
+    }
+    .weui-tabbar__label{
+        color:#fff!important;
     }
   }
 </style>

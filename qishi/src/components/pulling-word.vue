@@ -6,6 +6,7 @@
 
 <script>
 export default {
+	name:'loadWord',
     props:{
     	loadingWord:{
     		type:String,
@@ -21,8 +22,8 @@ export default {
 		text-align: center;
 		z-index: 100;
 		width: 100%;
-		height:1rem;
-		line-height: 1rem;	
+		height:30px;
+		line-height: 30px;	
 		span{
 			vertical-align: middle;
 			margin-left: 0.14rem;
@@ -30,6 +31,9 @@ export default {
 			&:before{
 				color:#666;
 				margin-right: 0.1rem;
+			}
+			&.iconfont{
+				font-size:14px;
 			}
 		}
 	}
