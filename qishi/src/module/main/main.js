@@ -22,7 +22,9 @@ const  vuex_store = new Vuex.Store({
           x:0,
           y:0
       },
-      homeProList:[]
+      homeProList:[],
+      nowPage:1,
+      loadWord:''
   },
   mutations:{
       showpath(state){

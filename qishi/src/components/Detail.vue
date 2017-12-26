@@ -3,11 +3,11 @@
 
 
   <view-box>
-    <x-header class="my-header" :left-options="{backText:''}">
-        <!-- <icon slot="overwrite-left"	></icon> -->
-      <div>商品详情</div>
+    <x-header slot="header" class='my-header' :left-options="{showBack:true,backText:''}">
+        <div>商品详情</div>
     </x-header>
-    <card class="product_detail_box" >
+    <Loading class="pullDown" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)" v-if="!ajaxDone" ></Loading>
+    <card v-else class="product_detail_box" >
 	    <img :src="pro_detail.product_image" slot="header" alt="">
     	<div slot="content" class="product_detail_head">
 		    <div class="commodity_name">
@@ -34,7 +34,7 @@
       <tabbar-item class="addcar" @on-item-click="addcar()">
         <span slot="label" style="color:#fff;">加入购物车</span>
       </tabbar-item>
-      <tabbar-item class="buynow" @on-item-click="buynow()">
+      <tabbar-item class="buynow" link="/settlement">
         <span slot="label" style="color:#fff;">立即购买</span>  
       </tabbar-item>
     </tabbar>
@@ -44,20 +44,21 @@
 
 <script>
   import axios from 'axios'
-  import {ViewBox,XHeader,Card,Tabbar, TabbarItem,Icon} from 'vux'
- 
+  import {ViewBox,XHeader,Card,Tabbar, TabbarItem} from 'vux'
+  import Loading from './loading.vue' 
 
   export default {
     name:'Detail',
     components: {
-      ViewBox,XHeader,Card,Tabbar, TabbarItem,Icon
+      ViewBox,XHeader,Card,Tabbar, TabbarItem,Loading
     },
     data(){
       return {
         pro_detail:{
 
         },
-        pro_num:1
+        pro_num:1,
+        ajaxDone:false
       }
     },
     created(){
@@ -65,6 +66,7 @@
         params:{}
       })
       .then(res=>{
+        this.ajaxDone=true;
         var oid=this.$route.params.proid;
         var vm=this;
         res.data.forEach(function(v,i,a){
@@ -95,25 +97,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import '~vux/src/styles/reset.less';
-  @import '~vux/src/styles/1px.less';
-  html,body{
-    width:100%;
-    height:100%;
-    margin:0;
-    background: #f1f1f1;
-  }
-  img{
-    width:100%;
-    display: block;
-  }
-  .my-header{
-    background-color: #4db90a!important;
-    color:#fff;
-    position: relative;
-    top:0;
-    width:100%;
-  }
+  
   .product_detail_box.weui-panel{
     margin-top:0px;
     background:none;

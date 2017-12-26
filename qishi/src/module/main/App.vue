@@ -34,6 +34,7 @@ export default {
     height:100%;
     margin:0;
     background: #f1f1f1;
+    font-family: 14px;
   }
   img{
     width:100%;
@@ -42,6 +43,22 @@ export default {
 #app{
   height:100%;
 }
+.my-header.vux-header .vux-header-left .left-arrow:before{
+  border-width:2px 0 0 2px;
+  border-color:#fff;
+}
+  .my-header{
+    background-color: #4db90a!important;
+    color:#fff;
+    position: absolute;
+    top:0;
+    width:100%;
+    .icon-white{
+      fill:#fff;
+      margin-top:-5px;
+      margin-left:-10px;
+    }
+  }
 .iconfont{
   font-size:20px;
 }

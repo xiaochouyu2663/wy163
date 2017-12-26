@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from 'components/Home'
 import Person from 'components/Person'
 import Detail from 'components/Detail'
+import Settlement from 'components/Settlement'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/detail/:proid',
       name: 'Detail',
       component: Detail
+    },
+    {
+      path: '/settlement',
+      name: 'Settlement',
+      component: Settlement
     }
   ],
   

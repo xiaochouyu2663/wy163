@@ -1,5 +1,6 @@
 <template>
   <view-box ref="viewBox">
+    <input type="text" v-model="question">
     <div v-for="i in 99">
       {{i}}
     </div>
@@ -34,7 +35,17 @@ export default {
   },
   data(){
     return {
-
+      question:''
+    }
+  },
+  watch:{
+    question:function(){
+      this.newAns()
+    }
+  },
+  methods:{
+    newAns(){
+      console.log(this.question)
     }
   },
  mounted(){
@@ -49,6 +60,9 @@ export default {
         },false)
         console.log(this.$store.state.path)
   })
+  setTimeout(()=>{
+    this.question=12
+  },2000)
  }
 }
 </script>
