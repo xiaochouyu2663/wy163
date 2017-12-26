@@ -5,8 +5,9 @@
         </x-header>
         <div>
             <group style="font-size:14px" >
-                <label style="padding:20px;" for="">发货方式</label>
-                <radio @on-change="changeType" selected  v-model="sendType"  :options="options"></radio>
+                <!-- <label style="padding:20px;" for="">发货方式</label>
+                <radio @on-change="changeType" selected  v-model="sendType"  :options="options"></radio> -->
+                <checklist  :max="1"  :options="options"></checklist >
             </group>
             <card :header="{title:'配送地址'}">
                 <ul style="padding:10px 20px;font-size:14px;list-style:none;" slot="content">
@@ -30,10 +31,10 @@
 </template>
 <script>
 
-import {ViewBox,XHeader,Cell ,Group,XSwitch,Radio,Card ,XButton} from 'vux'
+import {ViewBox,XHeader,Cell ,Group,XSwitch,Radio,Card ,XButton,Checker,Checklist  } from 'vux'
 export default {
     components:{
-        ViewBox,XHeader,Cell ,Group,XSwitch,Radio ,Card,XButton
+        ViewBox,XHeader,Cell ,Group,XSwitch,Radio ,Card,XButton,Checker ,Checklist 
     },
     data(){
         return {
