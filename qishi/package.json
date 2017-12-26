@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "better-scroll": "^1.6.2",
+    "better-scroll": "^1.6.3",
     "vue": "^2.0.1",
     "vue-axios": "^2.0.2",
     "vue-router": "^3.0.1",

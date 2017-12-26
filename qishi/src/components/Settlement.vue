@@ -4,10 +4,11 @@
             <div>结算</div>
         </x-header>
         <div>
-            <group style="font-size:14px" >
-                <!-- <label style="padding:20px;" for="">发货方式</label>
-                <radio @on-change="changeType" selected  v-model="sendType"  :options="options"></radio> -->
-                <checklist  :max="1"  :options="options"></checklist >
+            <group style="font-size:14px" gutter="10px">
+                <div style="padding:20px;font-size:14px" for="">发货方式</div>
+               <!--  <radio @on-change="changeType" selected  v-model="sendType"  :options="options"></radio> -->
+                <checklist style="font-size:14px" @on-change="changeType" :max="1"  :options="options" v-model="sendType"></checklist >
+                
             </group>
             <card :header="{title:'配送地址'}">
                 <ul style="padding:10px 20px;font-size:14px;list-style:none;" slot="content">
@@ -16,25 +17,45 @@
                     <li>山东省-济南市-市辖区-sf</li>
                 </ul>
             </card>
-            <group>
+            <group gutter="10px">
                 <cell style="font-size:15px;" title="总价" :value="products.totalPrice"></cell>
                 <cell style="font-size:15px;" title="运费" :value="products.freight" :is-loading="products.isShow"></cell>
                 <cell >
-                    <x-button style="font-size:14px;" plain>商品详情</x-button>
+                    <x-button style="font-size:13px;padding:0 10px;line-height:25px;" plain>商品详情</x-button>
                 </cell>
             </group>
-            <group>
-                <cell></cell>
+            <x-table :cell-bordered="false" style="background:#fff;">
+                <thead>
+                <tr>
+                    <th>产品名称</th>
+                    <th>数量</th>
+                    <th>价格</th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr v-for="item in this.products.list">
+                    <td>{{item.name}}</td>
+                    <td>{{item.num}}</td>
+                    <td>￥{{item.price.toFixed(2)}}</td>
+                </tr>
+                </tbody>
+            </x-table>
+            <group gutter="10px">
+                <cell>
+                    <span slot="title">总价：￥{{products.totalPrice+products.freight}}</span>
+                    <x-button style="font-size:13px;padding:0 10px;line-height:25px;" type="warn">提交订单</x-button>
+                </cell>
             </group>
+            
         </div>
     </view-box>
 </template>
 <script>
 
-import {ViewBox,XHeader,Cell ,Group,XSwitch,Radio,Card ,XButton,Checker,Checklist  } from 'vux'
+import {ViewBox,XHeader,Cell ,Group,XSwitch,Radio,Card ,XButton,Checker,Checklist,CheckerItem,XTable  } from 'vux'
 export default {
     components:{
-        ViewBox,XHeader,Cell ,Group,XSwitch,Radio ,Card,XButton,Checker ,Checklist 
+        ViewBox,XHeader,Cell ,Group,XSwitch,Radio ,Card,XButton,Checker ,Checklist ,CheckerItem,XTable
     },
     data(){
         return {
@@ -45,11 +66,12 @@ export default {
                 key: '2',
                 value: '公司发货'
                 }],
-            sendType:'2',     //1表示自提2表示公司发货
+            sendType: ['2'],     //1表示自提2表示公司发货
             products:{
                 totalPrice:621733,
                 freight:'',
-                isShow:true
+                isShow:true,
+                list:[]
             }
         }
     },
@@ -60,9 +82,13 @@ export default {
         }
     },
     created(){
+        this.$nextTick(()=>{
+            this.products.list=this.$store.state.settleProduct;
+        })
         setTimeout(()=>{
             this.products.freight=20
-            this.products.isShow=false
+            this.products.isShow=false;
+            
         },2000)
     }
 

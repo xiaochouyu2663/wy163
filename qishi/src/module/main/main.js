@@ -24,7 +24,11 @@ const  vuex_store = new Vuex.Store({
       },
       homeProList:[],
       nowPage:1,
-      loadWord:''
+      loadWord:'',
+      settleProduct:[
+        {id:1,name:'小白系列1',price:123,num:2},
+        {id:2,name:'小白系列2',price:443,num:1}
+      ]
   },
   mutations:{
       showpath(state){
