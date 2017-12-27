@@ -8,6 +8,9 @@ import Vuex from 'vuex'
 // const FastClick = require('fastclick')
 // FastClick.attach(document.body)
 
+import  { ToastPlugin } from 'vux'
+Vue.use(ToastPlugin)
+
 import  { LoadingPlugin } from 'vux'
 Vue.use(LoadingPlugin)
 
