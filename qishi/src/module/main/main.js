@@ -14,12 +14,16 @@ Vue.use(ToastPlugin)
 import  { LoadingPlugin } from 'vux'
 Vue.use(LoadingPlugin)
 
+// 导入alert插件
+import  { AlertPlugin } from 'vux'
+Vue.use(AlertPlugin)
 
 Vue.use(VueScroller)
 Vue.use(Vuex)
 
 const  vuex_store = new Vuex.Store({
   state:{
+      userId:1,
       path:0,
       scrollPath:{
           x:0,

@@ -14,6 +14,7 @@ import Address from 'components/Address'
 import News from 'components/News'
 import Share from 'components/Share'
 import PersonalInfo from 'components/PersonalInfo'
+import AddAddress from 'components/AddAddress'
 Vue.use(Router)
 
 export default new Router({
@@ -93,6 +94,11 @@ export default new Router({
       path:'/personalInfo',
       name:'PersonalInfo',
       component:PersonalInfo
+    },
+    {
+      path:'/addAddress',
+      name:'AddAddress',
+      component:AddAddress
     }
   ],
   

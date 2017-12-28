@@ -3,16 +3,16 @@
     
     
     <router-view></router-view>
-    <loading v-model="isLoading"></loading>
+    
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
-import {ViewBox,Tabbar,TabbarItem,Loading } from 'vux'
+import {ViewBox,Tabbar,TabbarItem} from 'vux'
 export default {
   name:'App',
   components:{
-    ViewBox,Tabbar,TabbarItem,Loading
+    ViewBox,Tabbar,TabbarItem
   },
   data(){
     return {
@@ -65,5 +65,40 @@ export default {
 .my-footer.weui-tabbar{
   position:fixed;
   
+}
+#set-default {
+  .weui-cell__bd{
+      flex:0!important;
+      font-size:14px;
+  }
+  .weui-switch, .weui-switch-cp__box{
+    width:38px;
+    height:22px;
+}
+.weui-switch:before, .weui-switch-cp__box:before{
+    width:36px;
+    height:20px;
+}
+.weui-switch:after, .weui-switch-cp__box:after{
+    width:20px;
+    height:20px;
+}
+}
+.set-default {
+  .weui-switch, .weui-switch-cp__box{
+    width:38px;
+    height:22px;
+}
+.weui-switch:before, .weui-switch-cp__box:before{
+    width:36px;
+    height:20px;
+}
+.weui-switch:after, .weui-switch-cp__box:after{
+    width:20px;
+    height:20px;
+}
+}
+.weui-cells{
+  font-size:15px!important;
 }
 </style>
