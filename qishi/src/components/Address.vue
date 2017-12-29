@@ -4,7 +4,7 @@
     <x-header class="my-header" slot="header" :left-options="{showBack:true,backText:''}">收货地址</x-header>
     <Loading class="pullDown" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)" v-if="!ajaxDone" ></Loading>
     <div v-else>
-        <div class="address-list" v-for="item in addressList">
+        <div class="address-list" v-for="(item,index) in addressList">
             <div class="address-list-main">
                 <div class="address-list-top">
                     <span style="padding-right:30px">{{item.Receiver}}</span>
@@ -17,7 +17,13 @@
 
             </div>
             <group gutter="0" style="width:100%" class="my-group">
-                <x-switch id="set-default" style="float:left;width:140px;" title="设为默认"   v-model="item.IsDefault?true:false"></x-switch> 
+                <x-switch :ref="'switch'+index" class="set-default" :disabled="item.IsDefault?true:false" style="float:left;width:140px;"  title="设为默认" :data-default="item.Id"   @on-change="setDefault(item.Id)"  v-model="item.IsDefault?true:false"></x-switch> 
+                <!-- <div style="float:left;width:140px;line-height:35px;margin-left:10px;font-size:14px;">
+                    <span class="checkbox" :data-isDefault="item.IsDefault" :data-id="item.Id">
+                        <i></i>
+                    </span>
+                    <span>设为默认</span>
+                </div> -->
                 <div class="address_opts" >
                     <span>编辑</span>    
                     <img @click="editAddress" src="../common/images/bianji.png" alt="">
@@ -33,11 +39,14 @@
 <script>
 
 import Loading from './loading.vue'
-import {ViewBox,XHeader,Group,XSwitch,XButton} from 'vux'
+import {ViewBox,XHeader,Group,XSwitch,XButton,Radio} from 'vux'
 import axios from 'axios'
 export default {
   components:{
-      ViewBox,XHeader,Loading,Group,XSwitch,XButton
+      ViewBox,XHeader,Loading,Group,XSwitch,XButton,Radio
+  },
+  props:{
+
   },
   data(){
       return {
@@ -52,7 +61,25 @@ export default {
       },
       editAddress(){
 
-      }
+      },
+      setDefault(oid){
+        
+        axios.get('http://localhost/tp5/public/index.php/index/index/setDefault',{
+            params:{
+                UserId:1,
+                Id:oid
+            }
+        }).then((res)=>{
+            if(res.data.code==200){
+                this.$vux.toast.text('设置默认地址成功！','middle')
+                location.reload();
+            }
+            console.log(res)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    },
+  
   },
   created(){
       
@@ -60,15 +87,16 @@ export default {
           params:{
               UserId:1
           }
-      })
-      .then((res)=>{
+      }).then((res)=>{
           this.addressList=res.data.data;
           this.ajaxDone=true;
-          console.log(res)
-      })
-      .catch((err)=>{
+          
+      }).catch((err)=>{
           console.log(err)
       })
+    
+    
+
   }
 }
 </script>
@@ -98,6 +126,35 @@ export default {
     margin-top:40px;
     line-height:2.2;
     font-size:16px;
+}
+.checkbox{
+    display:inline-block;
+    width:20px;
+    height: 20px;
+    position: relative;
+    top:7px;
+    i{
+        position: absolute;
+        display:inline-block;
+        width:16px;
+        height: 16px;
+        border:1px solid #ccc;
+        border-radius:2px;
+        &:after{
+            content:'';
+            position: absolute;
+            z-index:1;
+            top:-3px;
+            left:0;
+            width:17px;
+            height: 6px;
+            border:3px solid #4db90a;
+            transform: rotate(-45deg);
+            border-top:2px solid transparent;
+            border-right:2px solid transparent;
+            display:block;
+        }
+    }
 }
 </style>
 

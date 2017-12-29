@@ -90,7 +90,8 @@ export default {
             console.log(err)
             this.$vux.toast.text('获取数据失败，请重新尝试！')
         })
-    }
+    },
+    
   },
   created(){
       

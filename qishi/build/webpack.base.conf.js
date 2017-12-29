@@ -4,7 +4,7 @@ var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 var glob = require('glob');
 var entries = getEntry(['./src/module/*.js', './src/module/**/*.js']); // 获得入口js文件
-
+var webpack=require("webpack")
 const vuxLoader = require('vux-loader')
 
 
@@ -29,7 +29,7 @@ const webpackConfig = {
       'vue$': 'vue/dist/vue',
       'src': path.resolve(__dirname, '../src'),
       'common': path.resolve(__dirname, '../src/common'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
     }
   },
   resolveLoader: {

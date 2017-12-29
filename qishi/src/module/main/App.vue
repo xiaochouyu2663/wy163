@@ -66,7 +66,7 @@ export default {
   position:fixed;
   
 }
-#set-default {
+.set-default {
   .weui-cell__bd{
       flex:0!important;
       font-size:14px;

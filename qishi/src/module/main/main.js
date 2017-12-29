@@ -5,6 +5,9 @@ import router from './router'
 import VueScroller from 'vue-scroller'
 import Vuex from 'vuex'
 
+import $ from 'jquery'
+
+
 // const FastClick = require('fastclick')
 // FastClick.attach(document.body)
 

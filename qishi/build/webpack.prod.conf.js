@@ -36,6 +36,10 @@ var webpackConfig = merge(baseWebpackConfig, {
         warnings: false
       }
     }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    }),
     new CleanPlugin(['../dist']), //清空生成目录
     new webpack.optimize.OccurenceOrderPlugin(),
     // extract css into its own file
