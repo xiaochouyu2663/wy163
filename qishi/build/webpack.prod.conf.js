@@ -36,10 +36,6 @@ var webpackConfig = merge(baseWebpackConfig, {
         warnings: false
       }
     }),
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    }),
     new CleanPlugin(['../dist']), //清空生成目录
     new webpack.optimize.OccurenceOrderPlugin(),
     // extract css into its own file
@@ -128,5 +124,5 @@ for (var pathname in pages) {
     conf.hash = true;
   }
 
-  module.exports.plugins.push(new HtmlWebpackPlugin(conf));
+  module.exports.plugins.push(new HtmlWebpackPlugin(conf))
 }

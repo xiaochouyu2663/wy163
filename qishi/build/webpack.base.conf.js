@@ -77,7 +77,14 @@ const webpackConfig = {
         browsers: ['last 2 versions']
       })
     ]
-  }
+  },
+  plugins: [
+    // new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.ProvidePlugin({
+    jQuery: "jquery",
+    $: "jquery"
+    })
+    ]
 }
 
 module.exports = vuxLoader.merge(webpackConfig, {

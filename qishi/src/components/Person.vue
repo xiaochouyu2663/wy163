@@ -107,7 +107,13 @@ export default {
       ]
     }
   },
+  created(){
+    this.$nextTick(()=>{
+    })
+  },
+  methods:{
 
+  }
 }
 </script>
 <style lang="less">
