@@ -3,7 +3,7 @@
     <x-header slot="header" class="my-header" :left-options="{showBack:true,backText:''}">个人中心</x-header>
     <panel style="background:#4db90a;color:#000;margin-top:-1px;padding:10px 0" class="my-panel" :list="personInfo"></panel>
     <grid :cols="3" style="background:#fff;margin-top:10px;"> 
-      <grid-item :link="item.path" v-for="item in centerMenu">
+      <grid-item :link="item.path+'/'+userToken" v-for="item in centerMenu">
         <div class="center_mn" :class="[item.bgColor]">
             <img :src="item.bgSrc" alt="">
         </div>
@@ -11,37 +11,21 @@
       </grid-item>
       
     </grid>
-    <tabbar icon-class="iconfont icon-denglu" class="my-footer">
-      <tabbar-item link="/home"  icon-class="iconfont icon-caidantubiao-02">
-         <span slot="icon" >
-        <!--  <img src="~common/images/dui.png" alt="">-->
-        </span> 
-        <span slot="label">首页</span>
-      </tabbar-item>
-      <tabbar-item link="/shopcar" show-dot badge="0" icon-class="iconfont icon-gouwuche">
-         <span slot="icon">
-         <!-- <img src="~common/images/shopcar.png" alt="">-->
-        </span> 
-        <span slot="label">购物车</span>
-      </tabbar-item>
-      <tabbar-item link="/person" selected icon-class="iconfont icon-geren">
-        <span slot="icon"></span>
-        <span slot="label">
-          个人中心
-        </span>
-      </tabbar-item>
-    </tabbar>
+    <MFooter></MFooter>
   </view-box>
 </template>
 <script>
-import {ViewBox,Tabbar,TabbarItem,XHeader,Panel,Grid, GridItem} from 'vux';
+import MFooter from './Footer.vue'
+import {ViewBox,XHeader,Panel,Grid, GridItem} from 'vux';
 export default {
   name:'Person',
   components:{
-    ViewBox,Tabbar,TabbarItem,XHeader,Panel,Grid, GridItem
+    ViewBox,XHeader,Panel,Grid, GridItem,MFooter
   },
   data(){
     return {
+      userToken:this.$store.state.userToken,
+      userId:this.$store.state.userId,
       personState:1,
       personInfo:[{
         src: 'http://somedomain.somdomain/.jpg',

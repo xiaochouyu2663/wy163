@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <view-box>
+  
+    <view-box style="background:#fff;">
       <x-header class="my-header" :left-options="{showBack:true,backText:''}" :right-options="{showMore:false}">
         <p>登录</p>
         <a slot="right" href="register.html">注册</a>
@@ -21,12 +21,12 @@
       
       <toast v-model="isShow" :time="2000" type="text" width="200px" @on-hide="onHide" :is-show-mask="true" :text="showText" position="middle"></toast>
     </view-box>
-  </div>
+  
 </template>
 
 <script>
   import axios from 'axios'
-  
+  import {getCookie,setCookie} from '../util/util'
   import {ViewBox,XHeader,Group,Cell,XInput,XButton,Toast} from 'vux'
   export default {
     name: 'app',
@@ -56,76 +56,68 @@
         })
         .then(res=>{
           this.$vux.loading.hide()
-          console.log(res.data)
+          
           if(res.data.code==200){
             this.isShow=true;
             this.showText='登录成功';
-            $.coookie('userId',res.data.data['userId']);
-            // window.location.href="main.html";
+            setCookie('userToken',res.data.data['token'],3600);  //存储用户西信息
+            this.$store.commit('updateUserId',res.data.data['userId']);
+            this.$store.commit('updateUserToken',res.data.data['token']);
+            if(this.$route.query.redirect){
+                this.$router.push(this.$route.query.redirect+'/'+res.data.data['userId']);  //跳转到登陆之前的页面
+            }else{
+                this.$router.push('home/'+res.data.data['userId']);    //如果不是由其他页面跳转到登陆页，那么登录以后跳转到商城首页
+            }
+            
           }else{
             this.isShow=true;
-            this.showText=res.data.result;
+            this.showText=res.data.data;
             
           }
         })
         .catch(err=>{
           this.$vux.loading.hide()
+          this.$vux.Toast.text('登录失败，请重新登录!','middle');
           console.log(err)
         })
         
       },
       onHide(){
-        console.log('已经隐藏了')
+        
       }
+    },
+    created(){
+        
     }
   }
 </script>
 
 <style lang="less" scoped>
-  *{
-    font-size:14px;
-  }
+
+ 
   @import '~common/css/reset.css';
   @import '~common/css/iconfont.css';
-  html,body{
-    margin:0;padding:0;
-    width:100%;
-    height:100%;
-    background:#ffffff;
-  }
+
   .weui-cells.vux-no-group-title::before{
     border-top:1px solid #fff;
   }
-  #app{
-    height:100%;
-    .my-header{
-      background:#4db90a;
-      span{
-        color:#fff;
-      }
-      &.vux-header .vux-header-left .left-arrow:before{
-        border-color:#fff;
-      }
-      p{
-        margin:0;
-        font-size:16px;
-      }
-    }
-    .my-group{
-      width:80%;
-      border-radius:5px;
-      margin:10px auto;
-      .weui-cells:before{
-        border-top:none;
-      }
-      .weui-cells:after{
-        border-top:none!important;
-      }
-      .my-input{
-        border:1px solid #ccc;
-        border-radius:5px;
-      }
-    }
+  
     
-  }
+.my-group{
+    width:80%;
+    border-radius:5px;
+    margin:10px auto;
+    .weui-cells:before{
+    border-top:none;
+    }
+    .weui-cells:after{
+    border-top:none!important;
+    }
+    .my-input{
+    border:1px solid #ccc;
+    border-radius:5px;
+    }
+}
+    
+  
 </style>

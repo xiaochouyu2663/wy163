@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import {getCookie} from '../../util/util'
 
 import VueScroller from 'vue-scroller'
 import Vuex from 'vuex'
@@ -26,7 +27,8 @@ Vue.use(Vuex)
 
 const  vuex_store = new Vuex.Store({
   state:{
-      userId:1,
+      userId:null,
+      userToken:'',
       path:0,
       scrollPath:{
           x:0,
@@ -41,9 +43,12 @@ const  vuex_store = new Vuex.Store({
       ]
   },
   mutations:{
-      showpath(state){
-          alert(state.path);
-      }
+      updateUserId(state,userId){
+        state.userId=userId;      //更改用户userid
+      },
+      updateUserToken(state,userToken){
+        state.userToken=userToken;   //更改用户usertoken
+    },
   }
 })
 vuex_store.registerModule('vux', { // 名字自己定义
@@ -56,10 +61,26 @@ vuex_store.registerModule('vux', { // 名字自己定义
       }
     }
   })
-router.beforeEach(function (to, from, next) {
-    
+router.beforeEach( (to, from, next)=> {
+  
+  if (to.matched.some(recode =>recode.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!getCookie('userToken')) {
+      
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      vuex_store.commit('updateLoadingStatus', {isLoading: true})
+      next()
+    }
+  } else {
     vuex_store.commit('updateLoadingStatus', {isLoading: true})
     next();
+  }
+    
   })
   
   router.afterEach(function (to) {
@@ -67,7 +88,8 @@ router.beforeEach(function (to, from, next) {
         vuex_store.commit('updateLoadingStatus', {isLoading: false})
     },200)
     
-    
+    console.log('用户id',vuex_store.state.userId)
+    console.log('用户token',vuex_store.state.userToken)
   })
 /* eslint-disable no-new */
 new Vue({

@@ -56,6 +56,20 @@ export default {
       }
   },
   methods:{
+      getaddress(){
+        axios.get('http://localhost/tp5/public/index.php/index/index/address',{
+          params:{
+              UserId:this.$store.state.userId
+          }
+      }).then((res)=>{
+          console.log(res)
+          this.addressList=res.data.data;
+          this.ajaxDone=true;
+          
+      }).catch((err)=>{
+          console.log(err)
+      })
+      },
       deleteAddress(){
 
       },
@@ -72,7 +86,10 @@ export default {
         }).then((res)=>{
             if(res.data.code==200){
                 this.$vux.toast.text('设置默认地址成功！','middle')
-                location.reload();
+                setTimeout(()=>{
+                    this.getaddress()
+                },2000)
+                
             }
             console.log(res)
         }).catch((err)=>{
@@ -82,18 +99,8 @@ export default {
   
   },
   created(){
-      
-      axios.get('http://localhost/tp5/public/index.php/index/index/address',{
-          params:{
-              UserId:1
-          }
-      }).then((res)=>{
-          this.addressList=res.data.data;
-          this.ajaxDone=true;
-          
-      }).catch((err)=>{
-          console.log(err)
-      })
+      console.log('userid',this.$store.state.userId)
+      this.getaddress()
     
     
 

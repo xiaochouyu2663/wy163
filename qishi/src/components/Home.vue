@@ -34,27 +34,7 @@
           </div>
         </div>
       </div>
-      
-      <tabbar icon-class="iconfont icon-denglu" class="my-footer">
-      <tabbar-item link="/home" selected icon-class="iconfont icon-caidantubiao-02">
-         <span slot="icon" >
-        <!--  <img src="~common/images/dui.png" alt="">-->
-        </span> 
-        <span slot="label">首页</span>
-      </tabbar-item>
-      <tabbar-item link="/shopcar" show-dot badge="0" icon-class="iconfont icon-gouwuche">
-         <span slot="icon">
-         <!-- <img src="~common/images/shopcar.png" alt="">-->
-        </span> 
-        <span slot="label">购物车</span>
-      </tabbar-item>
-      <tabbar-item link="/person" icon-class="iconfont icon-geren">
-        <span slot="icon"></span>
-        <span slot="label">
-          个人中心
-        </span>
-      </tabbar-item>
-    </tabbar>
+      <MFooter></MFooter>
     </view-box>
   
 </template>
@@ -62,6 +42,7 @@
 <script>
 import axios from 'axios'
 import BScroll from 'better-scroll'
+import MFooter from './Footer.vue'
 import {ViewBox,XHeader,Swiper,Tab,TabItem,Panel,Tabbar,TabbarItem} from 'vux';
 import Loading from './loading.vue'
 import PullingWord from './pulling-word'
@@ -73,7 +54,7 @@ import PullingWord from './pulling-word'
 export default {
   name: 'Home',
   components:{
-    ViewBox,XHeader,Swiper,Tab,TabItem,Panel,Loading,PullingWord,Tabbar,TabbarItem,
+    ViewBox,XHeader,Swiper,Tab,TabItem,Panel,Loading,PullingWord,Tabbar,TabbarItem,MFooter
 
   },
   props: {
@@ -103,6 +84,7 @@ export default {
   },
   data(){
     return {
+      userId:'',
       nowPage:1,
       pageSize:2,
       // swiperList:[{ url: 'javascript:', img: 'https://static.vux.li/demo/1.jpg', title: '送你一朵fua' }, { url: 'javascript:', img: 'https://static.vux.li/demo/5.jpg', title: '送你一次旅行', fallbackImg: 'https://static.vux.li/demo/3.jpg' }],
@@ -229,6 +211,8 @@ export default {
   },
   
   created(){ 
+    this.userId=this.$store.state.userId;
+    console.log(this.userId)
       //获取banner数据 
        axios.get('http://localhost/tp5/public/index.php/index/index/getBanner',{
          params:{}
