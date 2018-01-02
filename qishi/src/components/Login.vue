@@ -64,9 +64,9 @@
             this.$store.commit('updateUserId',res.data.data['userId']);
             this.$store.commit('updateUserToken',res.data.data['token']);
             if(this.$route.query.redirect){
-                this.$router.push(this.$route.query.redirect+'/'+res.data.data['userId']);  //跳转到登陆之前的页面
+                this.$router.push(this.$route.query.redirect);  //跳转到登陆之前的页面
             }else{
-                this.$router.push('home/'+res.data.data['userId']);    //如果不是由其他页面跳转到登陆页，那么登录以后跳转到商城首页
+                this.$router.push('home');    //如果不是由其他页面跳转到登陆页，那么登录以后跳转到商城首页
             }
             
           }else{

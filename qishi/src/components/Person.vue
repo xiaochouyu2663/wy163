@@ -11,7 +11,7 @@
       </grid-item>
       
     </grid>
-    <MFooter></MFooter>
+    <MFooter :person="true"></MFooter>
   </view-box>
 </template>
 <script>
@@ -28,7 +28,7 @@ export default {
       userId:this.$store.state.userId,
       personState:1,
       personInfo:[{
-        src: 'http://somedomain.somdomain/.jpg',
+        src: 'http://localhost/tp5/public/static/images/white.jpg',
         fallbackSrc: 'http://localhost/tp5/public/static/images/white.jpg',
         title: '用户名：张三',
         desc: '级别：一星'

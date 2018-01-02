@@ -1,6 +1,7 @@
 <template>
   <div>
-    <!-- <MFooter></MFooter> -->
+      123
+    <MFooter :shopcar="true"></MFooter>
   </div>
   
 </template>
@@ -15,6 +16,9 @@ export default {
     },
   components:{
       XDialog,XButton ,Tabbar,TabbarItem,MFooter
+  },
+  created(){
+     
   }
 }
 </script>

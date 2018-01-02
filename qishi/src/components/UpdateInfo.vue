@@ -5,6 +5,7 @@
           <div style="padding:10px 15px;overflow:hidden;line-height:30px;">
               <label for="" style="display:inline-block;width:80px;float:left;line-height:32px;">头像</label>
               <img class="photo" src="../common/images/bai.png" alt="">
+              <input @change="upload($event)" id="upload" type="file" value="点击上传头像" style="display:block;float:left;color:#a1a1a1;line-height:32px;margin-left:10px;font-size:14px;position:absolute;left:130px;opacity:0;">
               <span style="display:block;float:left;color:#a1a1a1;line-height:32px;margin-left:10px;font-size:14px;">点击上传头像</span>
           </div>
           <x-input title="姓名" placeholder="输入姓名" v-model="personInfo.name"></x-input>
@@ -36,6 +37,16 @@ export default {
     },
   components:{
       ViewBox,XHeader,Group,XInput,XButton
+  },
+  methods:{
+      upload(event){
+            var files =event.currentTarget.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(files);
+            reader.onload = function(e) {
+               var img_base64= this.result.split(',')[1];
+            }
+      }
   }
 }
 </script>

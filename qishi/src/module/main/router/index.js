@@ -28,26 +28,26 @@ export default new Router({
 
     },
     {
-      path:'/:userId',
+      path:'/',
       name: 'Main',
       component: Home,
       meta:{requiresAuth:true}
     },
     {
-      path: '/home/:userId',
-      redirect:'/:userId',
+      path: '/home/',
+      redirect:'/',
       name: 'Home',
       component: Home,
       meta:{requiresAuth:true}
     },
     {
-      path: '/shopcar/:userId',
+      path: '/shopcar',
       name: 'Shopcar',
       component: Shopcar,
       meta:{requiresAuth:true}
     },
     {
-      path: '/person/:userId',
+      path: '/person',
       name: 'Person',
       component: Person,
       meta:{requiresAuth:true}

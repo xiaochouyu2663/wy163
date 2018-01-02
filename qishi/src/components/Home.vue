@@ -34,7 +34,7 @@
           </div>
         </div>
       </div>
-      <MFooter></MFooter>
+      <MFooter :home="true"></MFooter>
     </view-box>
   
 </template>
