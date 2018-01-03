@@ -19,7 +19,10 @@
   </view-box>
 </template>
 <script>
-import {ViewBox,XHeader,Group,XInput,XButton} from 'vux'
+import httpconfig from '../util/http'
+import axios from 'axios'
+import qs from 'qs'     //post数据传输需要将数据转换为字符串
+import {ViewBox,XHeader,Group,XInput,XButton,Toast} from 'vux'
 export default {
     data(){
         return {
@@ -36,17 +39,32 @@ export default {
         }
     },
   components:{
-      ViewBox,XHeader,Group,XInput,XButton
+      ViewBox,XHeader,Group,XInput,XButton,Toast
   },
   methods:{
       upload(event){
+            var self=this;   //将vue实例赋值给self;
             var files =event.currentTarget.files[0];
             var reader = new FileReader();
             reader.readAsDataURL(files);
             reader.onload = function(e) {
                var img_base64= this.result.split(',')[1];
+                axios.post('/upload', {fileContent:img_base64},httpconfig
+                )
+                .then(function (res) {
+                    console.log(res);
+                    self.$vux.toast.text('上传成功！','middle');
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    self.$vux.toast.text('获取数据失败，请重新尝试！','middle');
+                });
+
             }
       }
+  },
+  created(){
+      console.log(httpconfig)
   }
 }
 </script>

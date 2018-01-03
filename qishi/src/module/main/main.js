@@ -11,7 +11,7 @@ import $ from 'jquery'
 
 // const FastClick = require('fastclick')
 // FastClick.attach(document.body)
-
+//导入toast插件
 import  { ToastPlugin } from 'vux'
 Vue.use(ToastPlugin)
 
