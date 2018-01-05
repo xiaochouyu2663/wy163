@@ -2,7 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var webpack = require('webpack')
-var merge = require('webpack-merge')
+var merge = require('webpack-merge')        //一个可以合并数组和对象的插件
 var baseWebpackConfig = require('./webpack.base.conf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -85,7 +85,7 @@ if (config.build.productionGzip) {
 }
 
 module.exports = webpackConfig
-
+//多个入口文件
 function getEntry(globPath) {
   var entries = {},
     basename, tmp, pathname;
@@ -117,6 +117,7 @@ for (var pathname in pages) {
     inject: true,              // js插入位置
     // necessary to consistently work with multiple chunks via CommonsChunkPlugin
     chunksSortMode: 'dependency'
+
   };
 
   if (pathname in module.exports.entry) {
@@ -124,5 +125,5 @@ for (var pathname in pages) {
     conf.hash = true;
   }
 
-  module.exports.plugins.push(new HtmlWebpackPlugin(conf))
+  module.exports.plugins.push(new HtmlWebpackPlugin(conf));
 }

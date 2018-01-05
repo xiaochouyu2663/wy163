@@ -1,7 +1,7 @@
 <template>
   
 <view-box>
-    <x-header class="my-header" slot="header" :left-options="{showBack:true,backText:''}">收货地址</x-header>
+    <MHeader title="收货地址"></MHeader>
     <Loading class="pullDown" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)" v-if="!ajaxDone" ></Loading>
     <div v-else>
         <div class="address-list" v-for="(item,index) in addressList">
@@ -37,13 +37,13 @@
 </view-box>
 </template>
 <script>
-
+import MHeader from './Header.vue'    //导入公共的头部
 import Loading from './loading.vue'
 import {ViewBox,XHeader,Group,XSwitch,XButton,Radio} from 'vux'
 import axios from 'axios'
 export default {
   components:{
-      ViewBox,XHeader,Loading,Group,XSwitch,XButton,Radio
+      ViewBox,XHeader,Loading,Group,XSwitch,XButton,Radio,MHeader
   },
   props:{
 

@@ -1,11 +1,8 @@
 <template>
   
     <view-box ref="viewBox" >
-      <x-header @on-click-title="getscroll()" class="my-header" style="" slot="header" :left-options="{showBack:false,backText:''}">
-        <div>康妆商城</div>
-      </x-header>
-      
-      <div  id="wraper" slot="default" ref="wrapper">
+      <MHeader slot="header" :leftOptions="{showBack:false}" :title="'康妆商城'" ></MHeader>
+      <div   id="wraper" slot="default" ref="wrapper">
         <div  id="wraper-content">
           <Loading class="pullDown" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)" v-if="!ajaxDone" ></Loading>
           <div  v-else>
@@ -34,16 +31,18 @@
           </div>
         </div>
       </div>
-      <MFooter :home="true"></MFooter>
+      <MFooter slot="bottom" :home="true"></MFooter>
     </view-box>
   
 </template>
 
 <script>
+
 import axios from 'axios'
 import BScroll from 'better-scroll'
-import MFooter from './Footer.vue'
-import {ViewBox,XHeader,Swiper,Tab,TabItem,Panel,Tabbar,TabbarItem} from 'vux';
+import MHeader from './Header.vue'    //导入公共的头部
+import MFooter from './Footer.vue'    //导入公共的底部
+import {ViewBox,Swiper,Tab,TabItem,Panel,Tabbar,TabbarItem} from 'vux';
 import Loading from './loading.vue'
 import PullingWord from './pulling-word'
  const PullingUpWord="正在拼命加载中...";
@@ -54,7 +53,7 @@ import PullingWord from './pulling-word'
 export default {
   name: 'Home',
   components:{
-    ViewBox,XHeader,Swiper,Tab,TabItem,Panel,Loading,PullingWord,Tabbar,TabbarItem,MFooter
+    ViewBox,Swiper,Tab,TabItem,Panel,Loading,PullingWord,Tabbar,TabbarItem,MFooter,MHeader
 
   },
   props: {
@@ -212,7 +211,6 @@ export default {
   
   created(){ 
     this.userId=this.$store.state.userId;
-    console.log(this.userId)
       //获取banner数据 
        axios.get('http://localhost/tp5/public/index.php/index/index/getBanner',{
          params:{}

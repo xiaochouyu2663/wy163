@@ -1,9 +1,9 @@
 <template>
   <view-box ref="viewBox">
-    <x-header slot="header" class="my-header" :left-options="{showBack:true,backText:''}">个人中心</x-header>
+    <MHeader :title="'个人中心'"></MHeader>
     <panel style="background:#4db90a;color:#000;margin-top:-1px;padding:10px 0" class="my-panel" :list="personInfo"></panel>
     <grid :cols="3" style="background:#fff;margin-top:10px;"> 
-      <grid-item :link="item.path+'/'+userToken" v-for="item in centerMenu">
+      <grid-item :link="item.path" v-for="item in centerMenu">
         <div class="center_mn" :class="[item.bgColor]">
             <img :src="item.bgSrc" alt="">
         </div>
@@ -15,12 +15,13 @@
   </view-box>
 </template>
 <script>
-import MFooter from './Footer.vue'
-import {ViewBox,XHeader,Panel,Grid, GridItem} from 'vux';
+import MHeader from './Header.vue'    //导入公共的头部
+import MFooter from './Footer.vue'    //导入公共的底部
+import {ViewBox,Panel,Grid, GridItem} from 'vux';
 export default {
   name:'Person',
   components:{
-    ViewBox,XHeader,Panel,Grid, GridItem,MFooter
+    ViewBox,Panel,Grid, GridItem,MFooter,MHeader
   },
   data(){
     return {

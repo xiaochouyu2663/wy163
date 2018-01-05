@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    
-    
     <router-view></router-view>
-    
   </div>
 </template>
 <script>
@@ -46,6 +43,9 @@ export default {
 .my-header.vux-header .vux-header-left .left-arrow:before{
   border-width:2px 0 0 2px;
   border-color:#fff;
+}
+.vux-header .vux-header-left, .vux-header .vux-header-right a{
+  color:#fff;
 }
   .my-header{
     background-color: #4db90a!important;

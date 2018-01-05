@@ -1,10 +1,7 @@
 <template>
   
     <view-box style="background:#fff;">
-      <x-header class="my-header" :left-options="{showBack:true,backText:''}" :right-options="{showMore:false}">
-        <p>登录</p>
-        <a slot="right" href="register.html">注册</a>
-      </x-header>
+      <MHeader :title="'登录'" :showRight="true"></MHeader>
       <img style="width:200px;margin:0 auto;display:block;" src="~common/images/logo.jpg" alt="">
       <group gutter="0" class="my-group" >
           <x-input type="text"  v-model="username" placeholder="请输入用户名" class="my-input">
@@ -25,13 +22,14 @@
 </template>
 
 <script>
+import MHeader from './Header.vue'    //导入公共的头部
   import axios from 'axios'
   import {getCookie,setCookie} from '../util/util'
   import {ViewBox,XHeader,Group,Cell,XInput,XButton,Toast} from 'vux'
   export default {
     name: 'app',
     components: {
-      ViewBox,XHeader,Group,Cell,XInput,XButton,Toast
+      ViewBox,XHeader,Group,Cell,XInput,XButton,Toast,MHeader
     },
     data(){
       return {
@@ -66,7 +64,7 @@
             if(this.$route.query.redirect){
                 this.$router.push(this.$route.query.redirect);  //跳转到登陆之前的页面
             }else{
-                this.$router.push('home');    //如果不是由其他页面跳转到登陆页，那么登录以后跳转到商城首页
+                this.$router.push('/home');    //如果不是由其他页面跳转到登陆页，那么登录以后跳转到商城首页
             }
             
           }else{

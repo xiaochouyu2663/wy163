@@ -1,8 +1,6 @@
 <template>
   <view-box>
-      <x-header slot="header" class="my-header" title="新增收货地址" :left-options="{showBack:true,backText:''}">
-          
-      </x-header>
+      <MHeader title="新增收货地址"></MHeader>
       <group gutter="10px" label-width="80px">
         <x-input class="add-receiver" is-type="" type="text" placeholder="收货人姓名" show-clear :max="20" title="姓名" v-model="addressInfo.receiver"></x-input>
         <x-input class="add-receiver" @on-blur="verifyMobile" type="tel" placeholder="收货人手机号" show-clear :max="11" title="手机号" v-model="addressInfo.receiverPhone"></x-input>
@@ -16,12 +14,12 @@
   </view-box>
 </template>
 <script>
-
+import MHeader from './Header.vue'    //导入公共的头部
 import axios from 'axios'
 import {ViewBox,XHeader,Group,XInput,Selector,XAddress,ChinaAddressV4Data,XTextarea,XSwitch,XButton      }  from 'vux'
 export default {
   components:{
-      ViewBox,XHeader,Group,XInput ,Selector ,XAddress ,ChinaAddressV4Data ,XTextarea ,XSwitch ,XButton 
+      ViewBox,XHeader,Group,XInput ,Selector ,XAddress ,ChinaAddressV4Data ,XTextarea ,XSwitch ,XButton ,MHeader
   },
   data(){
       return {

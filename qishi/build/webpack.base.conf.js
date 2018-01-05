@@ -11,13 +11,13 @@ const vuxLoader = require('vux-loader')
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
-var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
-var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
-var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
+var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)    //是否在 dev 环境下开启 cssSourceMap ，在 config/index.js 中可配置
+var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)   //是否在 production 环境下开启 cssSourceMap ，在 config/index.js 中可配置 
+var useCssSourceMap = cssSourceMapDev || cssSourceMapProd     //最终是否使用 cssSourceMap
 
 const webpackConfig = {
-  entry: entries,
-  output: {
+  entry: entries,         // 配置webpack编译入口
+  output: {               // 配置webpack输出路径和命名规则
     path: config.build.assetsRoot,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
     filename: '[name].js'
@@ -25,7 +25,7 @@ const webpackConfig = {
   resolve: {
     extensions: ['', '.js', '.vue'],       //自动补全的扩展名
     fallback: [path.join(__dirname, '../node_modules')],
-    alias: {
+    alias: {                             // 创建import或require的别名，一些常用的，路径长的都可以用别名
       'vue$': 'vue/dist/vue',
       'src': path.resolve(__dirname, '../src'),
       'common': path.resolve(__dirname, '../src/common'),
