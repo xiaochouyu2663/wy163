@@ -42,7 +42,7 @@ const webpackConfig = {
       },
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         include: projectRoot,
         exclude: /node_modules/
       },

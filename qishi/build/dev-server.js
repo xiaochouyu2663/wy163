@@ -16,6 +16,8 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+
+//webpack-dev-middleware,作用就是，生成一个与webpack的compiler绑定的中间件，然后在express启动的服务app中调用这个中间件。
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   stats: {
@@ -67,5 +69,5 @@ module.exports = app.listen(port, function (err) {
   }
   var uri = 'http://localhost:' + port
   console.log('Listening at ' + uri + '\n')
-  opn(uri)
+  opn(uri)                  //在当前应用打开uri
 })
