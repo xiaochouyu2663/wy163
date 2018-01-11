@@ -14,3 +14,22 @@ webpack-dev-middleware,作用就是，生成一个与webpack的compiler绑定的
 step1: 配置publicPath.
 
 publicPath,熟悉webpack的同学都知道，这是生成的新文件所指向的路径，可以模拟CDN资源引用。那么跟此处的主角webpack-dev-middleware什么关系呢，关系就是，此处采用内存的方式，内存中采用的文件存储write path就是此处的publicPath，因此，这里的配置publicPath需要使用相对路径。
+
+vue-loader:vue-loader 是一个加载器，能把如下格式的 .Vue 组件转化成JavaScript模块
+
+resolve: {
+        
+        //自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名
+        extensions: ['', '.js', '.json', '.scss'],
+        //模块别名定义，方便后续直接引用别名，无须多写长长的地址
+        alias: {
+            AppStore : 'js/stores/AppStores.js',//后续直接 require('AppStore') 即可
+            ActionType : 'js/actions/ActionType.js',
+            AppAction : 'js/actions/AppAction.js'
+        }
+    }
+Webpack 的配置提供了 resolve 和 resolveLoader 参数来设置模块解析的处理细节，resolve 用来配置应用层的模块（要被打包的模块）解析，resolveLoader 用来配置 loader 模块的解析。
+
+当引入通过 npm 安装的 node.js 模块时，可能出现找不到依赖的错误。Node.js 模块的依赖解析算法很简单，是通过查看模块的每一层父目录中的 node_modules 文件夹来查询依赖的。当出现 Node.js 模块依赖查找失败的时候，可以尝试设置 resolve.fallback 和 resolveLoader.fallback 来解决问题。
+resolve: { fallback: path.join(__dirname, "node_modules") },
+resolveLoader: { fallback: path.join(__dirname, "node_modules") }

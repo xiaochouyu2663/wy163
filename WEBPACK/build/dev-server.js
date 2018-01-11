@@ -16,14 +16,28 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
       chunks: false
     }
 })
-
-const DIST_DIR = path.join(__dirname, "dist");
+var hotMiddleware = require('webpack-hot-middleware')(compiler,{
+  log: console.log,
+  path: '/__webpack_hmr',
+  heartbeat: 10 * 1000,
+});
+compiler.plugin('compilation', function (compilation) {
+  compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
+    hotMiddleware.publish({ action: 'reload' })
+    cb()
+  })
+})
 // serve webpack bundle output
 app.use(devMiddleware);
+
+app.use(hotMiddleware);
+
+
 app.get('/',function(req,res){
-    
-    
+  
+  res.send('hello world')
 })
+
 app.listen(port, function (err) {
     if (err) {
       console.log(err)
