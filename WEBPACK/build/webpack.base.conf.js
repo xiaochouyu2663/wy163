@@ -8,7 +8,7 @@ module.exports={
         'main': [hotMiddlewareScript,'./app/main.js'],
     },    
     output:{                            //__dirname是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
-        path:path.resolve(__dirname,'../public/static/index.js'),       //打包后的文件存放的地方  只使用dev-middleware 可以忽略本属性
+        path:path.resolve(__dirname,'../dist/static/index.js'),       //打包后的文件存放的地方  只使用dev-middleware 可以忽略本属性
         publicPath:'/',
         filename:'[name][hash:8].js'            //打包后输出文件的文件名
     }, 
@@ -17,6 +17,14 @@ module.exports={
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader'
             }
         ]
     },
@@ -30,11 +38,10 @@ module.exports={
         extensions: ['.js', '.json', '.scss','.vue'],
         alias: {
             'vue': 'vue/dist/vue.js',
-            'desss':'../static/js/test.js'
         },
-        fallback: [path.join(__dirname, '../node_modules')]
+        // fallback: [path.join(__dirname, '../node_modules')]
     },
     resolveLoader: {
-        fallback: [path.join(__dirname, '../node_modules')]
+        // fallback: [path.join(__dirname, '../node_modules')]
     },
 }

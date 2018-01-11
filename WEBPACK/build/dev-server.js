@@ -17,7 +17,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
     }
 })
 var hotMiddleware = require('webpack-hot-middleware')(compiler,{
-  log: console.log,
+  log: false,
   path: '/__webpack_hmr',
   heartbeat: 10 * 1000,
 });
