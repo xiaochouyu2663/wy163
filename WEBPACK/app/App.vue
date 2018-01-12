@@ -1,27 +1,36 @@
 <template>
-  <div>
-      <input type="text" v-model="msg">
-      <el-button>默认按钮</el-button>
-  </div>
+  <router-view></router-view>
 </template>
 <script>
 
 import Home from './components/Home'
 export default {
  name:'App',
-//  components:{Button,Select},
+ components:{
+    
+ },
  data(){
      return {
          msg:'sdfds'
      }
  },
  created(){
-     console.log('sdfsfdsfsdfsfsfsf')
+     
  }
 }
 </script>
-<style>
-
+<style lang="scss" >
+    html,body{
+        padding:0;
+        margin:0;
+    }
+    .w12{
+        width:1200px;
+    }
+    a,a:link,a:visited,a:focus{
+        color:#000;
+        text-decoration: none;
+    }
 </style>
 
 

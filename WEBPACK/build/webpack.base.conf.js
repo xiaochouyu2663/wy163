@@ -25,6 +25,14 @@ module.exports={
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader'
+            },
+            {
+                test:/\.scss$/,
+                loader:'style-loader!css-loader!scss-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader:'url-loader'
             }
         ]
     },
