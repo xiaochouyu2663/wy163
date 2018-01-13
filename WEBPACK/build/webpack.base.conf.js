@@ -40,12 +40,17 @@ module.exports={
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname , "../app/index.html")//new 一个这个插件的实例，并传入相关的参数
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ],
     resolve: {
         extensions: ['.js', '.json', '.scss','.vue'],
         alias: {
             'vue': 'vue/dist/vue.js',
+            'jquery':'jquery'
         },
         // fallback: [path.join(__dirname, '../node_modules')]
     },
