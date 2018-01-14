@@ -10,7 +10,7 @@ import '../theme/index.css'      //自定义主题
 
 import { Button,Row,Col,Container,Header,Footer,Aside ,Main,Input,Tag,
     Menu,Submenu,MenuItemGroup,MenuItem,Carousel,CarouselItem,Tabs,
-    TabPane,} from 'element-ui'
+    TabPane,Card} from 'element-ui'
 Vue.use(Button)
 Vue.use(Row)
 Vue.use(Col)
@@ -29,6 +29,7 @@ Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Card)
 new Vue({
     el:'#app',
     router,

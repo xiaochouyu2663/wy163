@@ -4,7 +4,7 @@
     <el-header class="my-header" style="height:auto;padding:0;">
       <Nhead></Nhead>
     </el-header>
-    <el-main class="w12" style="padding:0;overflow:hidden;">
+    <el-main class="w12" style="padding:0;overflow:hidden;width:1200px!important;">
       <el-container>
         <el-aside style="border:1px solid #ccc;height:435px;width:240px;padding-top:20px;">
           <el-menu>
@@ -37,19 +37,156 @@
           <div style="clear:both;">
             <el-tabs v-model="activeName" class="advertise">
               <el-tab-pane v-for="(item,index) in tabbar" :key="index" :label="item.content" :name="item.name">
-                {{item.content}}
+                <el-row style="border:2px solid #ebeef5;border-width:0 2px 2px 2px;">
+                  <el-col :span="4" v-for="(value,index) in productList" :key="index">
+                    <el-card :body-style="{}">
+                      <img style="width:100%;display:block;" :src="value.pro_image" alt="">
+                      <h5 style="margin-top:20px;color:#aaa;font-weight:normal;margin-bottom:10px;">{{value.pro_name}}</h5>
+                      <p style="color:#f00;">&euro;{{value.pro_price | fixTwo}}</p>
+                    </el-card>
+                  </el-col>
+                </el-row>
               </el-tab-pane>
             </el-tabs>
           </div>  
+          <div class="advertisement-box" >
+            <img  src="../../static/images/advertisement1.png" alt="">
+          </div>
+          <div class="pro_show">
+            <div class="show_top">
+              <div class="show_top_left">
+                <img src="../../static/images/icon_tit.png" alt="">
+                <span>食用橄榄油</span>
+              </div>
+              <div class="show_top_right">
+                <router-link to="/">更多>></router-link>
+              </div>
+            </div>
+            <div class="show_main">
+              <el-row>
+                <el-col :span="5" style="">
+                  <div>
+                    <ul class="show_main_menu">
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                    </ul>
+                    <img src="../../static/images/bottom_bg.png" alt="">
+                  </div>
+                </el-col>
+                <el-col :span="7" >
+                  <img style="width:100%;display:block;" src="../../static/images/left_bg.png" alt="">
+                </el-col>
+                <el-col :span="12" style="">
+                  <div style="padding:0 20px;">
+                   <el-card style="width:33.333%;float:left;border:none;box-shadow:none;" :body-style="{padding:'10px 20px'}" v-for="(value,index) in productList" :key="index">
+                      <img style="width:100%;display:block;" :src="value.pro_image" alt="">
+                      <h5 style="margin-top:5px;color:#aaa;font-weight:normal;margin-bottom:0px;">{{value.pro_name}}</h5>
+                      <p style="color:#f00;">&euro;{{value.pro_price | fixTwo}}</p>
+                    </el-card>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+          </div>
+          <div class="pro_show">
+            <div class="show_top">
+              <div class="show_top_left">
+                <img src="../../static/images/icon_tit.png" alt="">
+                <span>食用橄榄油</span>
+              </div>
+              <div class="show_top_right">
+                <router-link to="/">更多>></router-link>
+              </div>
+            </div>
+            <div class="show_main">
+              <el-row>
+                <el-col :span="5" style="">
+                  <div>
+                    <ul class="show_main_menu">
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                    </ul>
+                    <img src="../../static/images/bottom_bg.png" alt="">
+                  </div>
+                </el-col>
+                <el-col :span="7" >
+                  <img style="width:100%;display:block;" src="../../static/images/left_bg.png" alt="">
+                </el-col>
+                <el-col :span="12" style="">
+                  <div style="padding:0 20px;">
+                   <el-card style="width:33.333%;float:left;border:none;box-shadow:none;" :body-style="{padding:'10px 20px'}" v-for="(value,index) in productList" :key="index">
+                      <img style="width:100%;display:block;" :src="value.pro_image" alt="">
+                      <h5 style="margin-top:5px;color:#aaa;font-weight:normal;margin-bottom:0px;">{{value.pro_name}}</h5>
+                      <p style="color:#f00;">&euro;{{value.pro_price | fixTwo}}</p>
+                    </el-card>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+          </div>
+          <div class="pro_show">
+            <div class="show_top">
+              <div class="show_top_left">
+                <img src="../../static/images/icon_tit.png" alt="">
+                <span>食用橄榄油</span>
+              </div>
+              <div class="show_top_right">
+                <router-link to="/">更多>></router-link>
+              </div>
+            </div>
+            <div class="show_main">
+              <el-row>
+                <el-col :span="5" style="">
+                  <div>
+                    <ul class="show_main_menu">
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                      <li>初级特榨</li>
+                    </ul>
+                    <img src="../../static/images/bottom_bg.png" alt="">
+                  </div>
+                </el-col>
+                <el-col :span="7" >
+                  <img style="width:100%;display:block;" src="../../static/images/left_bg.png" alt="">
+                </el-col>
+                <el-col :span="12" style="">
+                  <div style="padding:0 20px;">
+                   <el-card style="width:33.333%;float:left;border:none;box-shadow:none;" :body-style="{padding:'10px 20px'}" v-for="(value,index) in productList" :key="index">
+                      <img style="width:100%;display:block;" :src="value.pro_image" alt="">
+                      <h5 style="margin-top:5px;color:#aaa;font-weight:normal;margin-bottom:0px;">{{value.pro_name}}</h5>
+                      <p style="color:#f00;">&euro;{{value.pro_price | fixTwo}}</p>
+                    </el-card>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+          </div>
+          <div class="advertisement-box" >
+            <img  src="../../static/images/advertisement1.png" alt="">
+          </div>
         </el-main>
       </el-container>
     </el-main>
-    <el-footer style="height:100%">Footer</el-footer>
+    <el-footer style="height:100%;padding:0;">
+      <Nfoot name="Nfoot"></Nfoot>
+    </el-footer>
       
   </el-container>
 </template>
 <script>
 import Nhead from './Nhead'
+import Nfoot from './Nfoot'
 export default {
   data(){
     return {
@@ -140,11 +277,55 @@ export default {
           content:'营养系列'
         }
       ],
-      activeName:'first'
+      activeName:'first',
+      productList:[
+        {
+          pro_id:0,
+          pro_name:'Huile Olive食用橄榄油',
+          pro_price:'232.00',
+          pro_image:require('../../static/images/product_01.png')
+        },
+        {
+          pro_id:0,
+          pro_name:'Huile Olive食用橄榄油',
+          pro_price:'232.00',
+          pro_image:require('../../static/images/product_01.png')
+        },
+        {
+          pro_id:0,
+          pro_name:'Huile Olive食用橄榄油',
+          pro_price:'232.00',
+          pro_image:require('../../static/images/product_01.png')
+        },
+        {
+          pro_id:0,
+          pro_name:'Huile Olive食用橄榄油',
+          pro_price:'232.00',
+          pro_image:require('../../static/images/product_01.png')
+        },
+        {
+          pro_id:0,
+          pro_name:'Huile Olive食用橄榄油',
+          pro_price:'232.00',
+          pro_image:require('../../static/images/product_01.png')
+        },
+        {
+          pro_id:0,
+          pro_name:'Huile Olive食用橄榄油',
+          pro_price:'232.00',
+          pro_image:require('../../static/images/product_01.png')
+        }
+      ]
     }
   },
   components: {
-    Nhead
+    Nhead,Nfoot
+  },
+  // 在组件的选项中定义本地过滤器
+  filters:{
+    fixTwo(value){
+      return Number(value).toFixed(2)
+    }
   }
 }
 </script>
@@ -194,6 +375,62 @@ export default {
     .el-tabs__item{
       width:33.3333%;
       text-align:center;
+    }
+    .el-tabs__header{
+      margin:0;
+    }
+    .el-card{
+      border:none;
+      box-shadow: none;
+    }
+  }
+  .advertisement-box{
+    margin:20px auto;
+    img{
+      width:100%;
+    }
+  }
+  .pro_show{
+    margin-bottom:20px;
+  }
+  .show_top{
+    display:flex;
+    justify-content: space-between;
+
+    img{
+      width:20px;
+      display: block;
+      float: left;
+      margin-right:15px;
+    }
+    .show_top_left{
+      font-weight: bold;
+    }
+    .show_top_right{
+      a{
+        color:#aaa;
+        font-size:14px;
+      }
+      
+    }
+  }
+  .show_main{
+    border:1px solid #ccc;
+    min-height:400px;
+    margin-top:10px;
+    padding:5px;
+  }
+  .show_main_menu{
+    padding:20px 15px 0;
+    overflow:hidden;
+    li{
+      float: left;
+      width:50%;
+      color:#aaa;
+      text-align:center;
+      border-bottom:1px solid #ccc;
+      font-size:14px;
+      line-height:40px;
     }
   }
 </style>

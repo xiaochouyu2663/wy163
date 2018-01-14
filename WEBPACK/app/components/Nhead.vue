@@ -97,6 +97,9 @@ export default {
             padding:10px 0;
             .header-search-box{
                 border:2px solid $primary-color;
+                display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6 */
+                display: -moz-box;  /* OLD - Firefox 19- H5不用考虑 */
+                display: -mz-flexbox; 
                 display:flex;
                 margin-top:10px;
             }
