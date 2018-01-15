@@ -5,9 +5,12 @@ module.exports={
         //path
         assetsRoot:path.resolve(__dirname,'../dist'),
         assetsSubDirectory:'static',
-        assetsPublicPath:'/'
+        assetsPublicPath:'./'
     },
     dev:{     //开发环境
-
+        //path
+        assetsRoot:path.resolve(__dirname,'../dist'),
+        assetsSubDirectory:'static',
+        assetsPublicPath:'/'
     }
 }

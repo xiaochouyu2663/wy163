@@ -20,12 +20,21 @@ export default {
 }
 </script>
 <style lang="scss" >
+    *{
+        padding:0;
+        margin:0;
+    }
     html,body{
         padding:0;
         margin:0;
     }
+
+    ul,li{
+        list-style:none;
+    }
     .w12{
         width:1200px;
+        margin:0 auto;
     }
     a,a:link,a:visited,a:focus{
         color:#000;

@@ -12,32 +12,68 @@
         </div>
   </div>
   <el-row class="header_main w12">
-      <el-col :span="4" class="header-logo">
-          <img src="../../static/images/logo.jpg" alt="">
+      <el-col :span="6" class="header-logo">
+          <router-link to="/">
+              <img src="../../static/images/logo.jpg" alt="">
+          </router-link>
+          
       </el-col>
-      <el-col :span="16" class="header-search">
-        <div class="header-search-box">
-            <input type="search">
-            <el-button>搜索</el-button>
-        </div>
-        <div>
-            热门关键字
-        </div>
+      <el-col :span="12"  class="header-search">
+          <div>
+              <div class="header-search-box">
+                <el-input id="search" v-model="search" prefix-icon="el-icon-search" clearable placeholder="请输入搜索内容"></el-input>
+                <el-button class="primary">搜&nbsp;&nbsp;索</el-button>
+            </div>
+            <div style="font-size:14px;margin-top:5px;">
+                热门关键字:
+                <span>sfs</span>
+                <span>sfs</span>
+            </div>
+          </div>
       </el-col>
-      <el-col :span="4" class="header-shopcar">
-        sfsf
+      <el-col :span="6" class="header-shopcar">
+        <div style="text-align:right;margin-top:10px;">
+            <el-button class="shopcar primary">
+                <i class="el-icon-goods"></i>
+                购物车0件
+                <i class="el-icon-arrow-right"></i>
+            </el-button>
+        </div>
       </el-col>
   </el-row>
+  <div class="w12">
+      <el-button class="primary">商品全部分类</el-button>
+  </div>
 </div>
   
 </template>
 <script>
 export default {
-  
+  data(){
+      return {
+          search:''
+      }
+  },
+  created(){
+      this.$nextTick(()=>{
+          $('.primary').mouseover(function(){
+
+              $(this).css({'background':'#bdd90b','color':'#fff'})
+          })
+      })
+      
+  }
 }
 </script>
-<style scoped lang="scss">
+<style  lang="scss">
     $primary-color:#bdd90b;
+    .primary{
+        background:$primary-color;
+        color:#fff;
+        border:none;
+        border-radius:0;
+    }
+    
     #header{
         border-bottom:2px solid $primary-color;
         .header_top{
@@ -57,12 +93,29 @@ export default {
             }
         }
         .header_main{
-            outline:1px solid red;
             margin:0 auto;
+            padding:10px 0;
             .header-search-box{
                 border:2px solid $primary-color;
+                display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6 */
+                display: -moz-box;  /* OLD - Firefox 19- H5不用考虑 */
+                display: -mz-flexbox; 
+                display:flex;
+                margin-top:10px;
             }
         }
+    }
+    #search{
+        outline:none;
+        border:none;
+        border-radius:0;
+    }
+    .shopcar{
+        background:$primary-color;
+        border:none;
+        border-radius: 0;
+        color:#fff;
+        outline:2px solid $primary-color;
     }
 </style>
 
