@@ -23,6 +23,7 @@ export default {
     *{
         padding:0;
         margin:0;
+        font-family:'microsoft yahei', Arial, Helvetica, sans-serif;
     }
     html,body{
         padding:0;
@@ -39,6 +40,9 @@ export default {
     a,a:link,a:visited,a:focus{
         color:#000;
         text-decoration: none;
+    }
+    a.red,a:visited{
+        color:#fe5722;
     }
 </style>
 

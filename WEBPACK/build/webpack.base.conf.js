@@ -2,15 +2,15 @@
 const path=require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 const config=require('../config')
 module.exports={
     entry:{ //唯一入口文件
         'main': [hotMiddlewareScript,'./app/main.js'],
     },    
     output:{                            //__dirname是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
-        path:path.resolve(__dirname,'../dist/static/index.js'),       //打包后的文件存放的地方  只使用dev-middleware 可以忽略本属性
-        publicPath:'/',
+        path:path.resolve(__dirname,'../dist/static'),       //打包后的文件存放的地方  只使用dev-middleware 可以忽略本属性
+        publicPath:process.env.NODE_ENV ==='production'?config.build.assetsPublicPath:config.dev.assetsPublicPath,
         filename:'[name][hash:8].js'            //打包后输出文件的文件名
     }, 
     module:{

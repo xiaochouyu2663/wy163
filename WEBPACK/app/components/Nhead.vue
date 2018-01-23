@@ -77,7 +77,8 @@ export default {
     #header{
         border-bottom:2px solid $primary-color;
         .header_top{
-            font-size:14px;
+            font-size:12px;
+            color:#959595;
             background:rgb(248,248,248);
             line-height:30px;
             border-bottom:1px solid #ebebeb;
@@ -90,6 +91,9 @@ export default {
             }
             .top-form{
                 float:right;
+                a{
+                   color:#959595; 
+                }
             }
         }
         .header_main{
