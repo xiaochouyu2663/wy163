@@ -18,7 +18,7 @@
                  <el-checkbox v-model="isAutoLogin">自动登录</el-checkbox>
                  <router-link style="font-size:14px;float:right;" to="/forget" >忘记密码</router-link>
              </div>
-             <el-button style="width:100%;margin-bottom:80px;" type="primary">登&nbsp;&nbsp;录</el-button>
+             <el-button @click="userLogin" style="width:100%;margin-bottom:80px;" type="primary">登&nbsp;&nbsp;录</el-button>
          </div>
      </div>
  </div>
@@ -26,7 +26,15 @@
  
 </template>
 <script>
+// import config from '../common/axiosuntil'
+import axios from 'axios'
+import qs from 'qs';
+/** 全局设置axios  */
+axios.defaults.baseURL='http://www.demo.com/api/index/';
+// axios.defaults.headers['content-type']='application/x-www-form-urlencode';
+
 import Mhead from './Mhead.vue'
+// axios(config);
 export default {
     data(){
         return {
@@ -38,6 +46,39 @@ export default {
     },
   components:{
       Mhead
+  },
+  methods:{
+      userLogin(){
+        axios.post('/login',qs.stringify({
+          'username':this.username,
+          'password':this.password
+        }))
+        .then((res)=>{
+            let result=res.data;
+            if(result.code==200){
+                let userInfo={};
+                userInfo.isLogin=true;
+                userInfo.name=result.data.alias;
+                this.$store.commit('updateLogin',userInfo)
+                this.$router.push('/home');
+                return;
+            }
+            this.$message({
+                message:res.data.msg,
+                type: 'error'
+            });
+            
+        })
+        .catch((res)=>{
+            this.$message({
+                message:res.data.msg,
+                type: 'error'
+            });
+        })
+      }
+  },
+  created(){
+      
   }
 }
 </script>

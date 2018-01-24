@@ -2,12 +2,16 @@
 <div id="header">
     <div class="header_top">
         <div class="header_top-main w12">
-            <div class="top-title">
-                你好，欢迎光临农哒商城
+            <div class="top-title" style="padding:3px 0;">
+                你好，{{name}}
             </div>
-            <div class="top-form">
+            <div v-if="!isLogin" class="top-form">
                 <router-link to="login">登录</router-link>
-                <router-link to="register">注册</router-link>
+                <router-link to="register" style="margin-left:20px;">注册</router-link>
+            </div>
+            <div v-else class="top-form">
+                <el-button style="font-size:12px;color:#959595" type="text" >退出</el-button>
+                <el-button style="margin-left:20px;font-size:12px;color:#959595" type="text" >个人中心</el-button>
             </div>
         </div>
   </div>
@@ -49,6 +53,16 @@
 </template>
 <script>
 export default {
+    props:{
+        isLogin:{
+            type:Boolean,
+            default:false
+        },
+        name:{
+            type:String,
+            default:'欢迎光临农哒商城'
+        }
+    },
   data(){
       return {
           search:''

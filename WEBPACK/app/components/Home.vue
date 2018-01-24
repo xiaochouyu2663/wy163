@@ -1,8 +1,8 @@
 <template>
-
+<transition name="fade">
   <el-container style="width:100%;">
     <el-header class="my-header" style="height:auto;padding:0;">
-      <Nhead></Nhead>
+      <Nhead :isLogin="userInfo.isLogin" :name="userInfo.name"></Nhead>
     </el-header>
     <el-main class="w12" style="padding:0;overflow:hidden;width:1200px!important;">
       <el-container>
@@ -183,6 +183,7 @@
     </el-footer>
       
   </el-container>
+  </transition>
 </template>
 <script>
 import Nhead from './Nhead'
@@ -190,7 +191,10 @@ import Nfoot from './Nfoot'
 export default {
   data(){
     return {
-      
+      userInfo:{
+        isLogin:false,
+        // name:null
+      },
       menuList:[
         {
           icon:'el-icon-search',
@@ -326,10 +330,22 @@ export default {
     fixTwo(value){
       return Number(value).toFixed(2)
     }
+  },
+  created(){
+    
+    this.userInfo.isLogin=this.$store.state.userInfo.isLogin;
+    this.userInfo.name=this.$store.state.userInfo.name;
+    console.log(this.$store.state.userInfo.name)
   }
 }
 </script>
 <style lang="scss" >
+.fade-enter-active,{
+  transition: opacity .5s
+}
+.fade-enter, /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
   .my-header{
     height:auto;
   }
