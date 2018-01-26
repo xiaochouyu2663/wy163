@@ -1,8 +1,8 @@
 <template>
-
+<transition name="fade">
   <el-container style="width:100%;">
     <el-header class="my-header" style="height:auto;padding:0;">
-      <Nhead></Nhead>
+      <Nhead :isLogin="userInfo.isLogin" :name="userInfo.name" v-on:updateUserInfo="userLogoff"></Nhead>
     </el-header>
     <el-main class="w12" style="padding:0;overflow:hidden;width:1200px!important;">
       <el-container>
@@ -183,14 +183,18 @@
     </el-footer>
       
   </el-container>
+  </transition>
 </template>
 <script>
-import Nhead from './Nhead'
-import Nfoot from './Nfoot'
+import Nhead from './common/Nhead'
+import Nfoot from './common/Nfoot'
 export default {
   data(){
     return {
-      
+      userInfo:{
+        isLogin:false,
+        name:undefined
+      },
       menuList:[
         {
           icon:'el-icon-search',
@@ -326,10 +330,37 @@ export default {
     fixTwo(value){
       return Number(value).toFixed(2)
     }
+  },
+  created(){
+    this.$nextTick(()=>{
+      this.InitUserInfo()
+    })
+  },
+  methods:{
+    /** function:退出登录功能 */
+    userLogoff(){
+      let userInfo={
+          isLogin:false,
+          name:undefined
+      }
+      this.$cookie.set('userInfo',JSON.stringify(userInfo));
+      this.userInfo=userInfo;
+    },
+
+    /**function:获取用户信息 2018-1-25*/
+    InitUserInfo(){
+      this.userInfo=JSON.parse(this.$cookie.get('userInfo'));
+    }
   }
 }
 </script>
 <style lang="scss" >
+.fade-enter-active,{
+  transition: opacity .5s
+}
+.fade-enter, /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
   .my-header{
     height:auto;
   }
