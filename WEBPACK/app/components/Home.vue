@@ -2,7 +2,7 @@
 <transition name="fade">
   <el-container style="width:100%;">
     <el-header class="my-header" style="height:auto;padding:0;">
-      <Nhead :isLogin="userInfo.isLogin" :name="userInfo.name"></Nhead>
+      <Nhead :isLogin="userInfo.isLogin" :name="userInfo.name" v-on:updateUserInfo="userLogoff"></Nhead>
     </el-header>
     <el-main class="w12" style="padding:0;overflow:hidden;width:1200px!important;">
       <el-container>
@@ -193,7 +193,7 @@ export default {
     return {
       userInfo:{
         isLogin:false,
-        // name:null
+        name:undefined
       },
       menuList:[
         {
@@ -332,10 +332,25 @@ export default {
     }
   },
   created(){
-    
-    this.userInfo.isLogin=this.$store.state.userInfo.isLogin;
-    this.userInfo.name=this.$store.state.userInfo.name;
-    console.log(this.$store.state.userInfo.name)
+    this.$nextTick(()=>{
+      this.InitUserInfo()
+    })
+  },
+  methods:{
+    /** function:退出登录功能 */
+    userLogoff(){
+      let userInfo={
+          isLogin:false,
+          name:undefined
+      }
+      this.$cookie.set('userInfo',JSON.stringify(userInfo));
+      this.userInfo=userInfo;
+    },
+
+    /**function:获取用户信息 2018-1-25*/
+    InitUserInfo(){
+      this.userInfo=JSON.parse(this.$cookie.get('userInfo'));
+    }
   }
 }
 </script>

@@ -10,7 +10,7 @@
                 <router-link to="register" style="margin-left:20px;">注册</router-link>
             </div>
             <div v-else class="top-form">
-                <el-button style="font-size:12px;color:#959595" type="text" >退出</el-button>
+                <el-button style="font-size:12px;color:#959595" type="text" @click="userLogoff">退出</el-button>
                 <el-button style="margin-left:20px;font-size:12px;color:#959595" type="text" >个人中心</el-button>
             </div>
         </div>
@@ -65,11 +65,19 @@ export default {
     },
   data(){
       return {
-          search:''
+          search:'',
+          
+      }
+  },
+  methods:{
+      /**function:退出登录 2018-1-25 */
+      userLogoff(){
+          this.$emit('updateUserInfo');
       }
   },
   created(){
       this.$nextTick(()=>{
+          
           $('.primary').mouseover(function(){
 
               $(this).css({'background':'#bdd90b','color':'#fff'})
