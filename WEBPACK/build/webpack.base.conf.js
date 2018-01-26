@@ -52,7 +52,8 @@ module.exports={
         extensions: ['.js', '.json', '.scss','.vue'],
         alias: {
             'vue': 'vue/dist/vue.js',
-            'jquery':'jquery'
+            'jquery':'jquery',
+            'static':path.resolve(__dirname,'../static')
         },
         // fallback: [path.join(__dirname, '../node_modules')]
     },

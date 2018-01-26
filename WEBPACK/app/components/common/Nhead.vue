@@ -11,14 +11,14 @@
             </div>
             <div v-else class="top-form">
                 <el-button style="font-size:12px;color:#959595" type="text" @click="userLogoff">退出</el-button>
-                <el-button style="margin-left:20px;font-size:12px;color:#959595" type="text" >个人中心</el-button>
+                <router-link to="/usercenter"><el-button style="margin-left:20px;font-size:12px;color:#959595" type="text" >个人中心</el-button></router-link>
             </div>
         </div>
   </div>
   <el-row class="header_main w12">
       <el-col :span="6" class="header-logo">
           <router-link to="/">
-              <img src="../../static/images/logo.jpg" alt="">
+              <img src="~static/images/logo.jpg" alt="">
           </router-link>
           
       </el-col>
@@ -98,6 +98,7 @@ export default {
     
     #header{
         border-bottom:2px solid $primary-color;
+        background: #fff;
         .header_top{
             font-size:12px;
             color:#959595;

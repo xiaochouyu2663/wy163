@@ -186,8 +186,8 @@
   </transition>
 </template>
 <script>
-import Nhead from './Nhead'
-import Nfoot from './Nfoot'
+import Nhead from './common/Nhead'
+import Nfoot from './common/Nfoot'
 export default {
   data(){
     return {
