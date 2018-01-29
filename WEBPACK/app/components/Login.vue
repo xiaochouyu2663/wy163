@@ -93,26 +93,26 @@ body{
     margin-top:10px;
     display:block;
 }
-    .main{
+.main{
+    
+    background:url('../../static/images/login_bg.jpg') no-repeat center/cover;
+    .login_box{
+        width:1200px;
+        margin:0 auto;
+        overflow: hidden;
+    }
+    .login_form{
+        float:right;
+        background:#fff;
+        width:320px;
         
-        background:url('../../static/images/login_bg.jpg') no-repeat center/cover;
-        .login_box{
-            width:1200px;
-            margin:0 auto;
-            overflow: hidden;
-        }
-        .login_form{
-            float:right;
-            background:#fff;
-            width:320px;
-            
-            padding:20px ;
-            margin:40px 0;
-            .input-group{
-                margin-bottom:20px;
-            }
+        padding:20px ;
+        margin:40px 0;
+        .input-group{
+            margin-bottom:20px;
         }
     }
+}
     
 </style>
 

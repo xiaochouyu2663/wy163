@@ -5,6 +5,7 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import Layout from '../components/Layout'
 import UserCenter from '../components/user/UserCenter'
+import ProductDetail from '../components/products/ProductDetail'
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +36,11 @@ export default new Router({
             path:'/usercenter',
             name:'usercenter',
             component:UserCenter
+        },
+        {
+            path:'/productDetail',
+            name:'productDetail',
+            component:ProductDetail
         }
     ]
  })

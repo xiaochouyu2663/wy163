@@ -1,6 +1,6 @@
 <template>
 <transition name="fade">
-  <el-container style="width:100%;">
+  <el-container class="home-box" style="width:100%;">
     <el-header class="my-header" style="height:auto;padding:0;">
       <Nhead :isLogin="userInfo.isLogin" :name="userInfo.name" v-on:updateUserInfo="userLogoff"></Nhead>
     </el-header>
@@ -355,6 +355,9 @@ export default {
 }
 </script>
 <style lang="scss" >
+.home-box{
+  background:#fff;
+}
 .fade-enter-active,{
   transition: opacity .5s
 }
