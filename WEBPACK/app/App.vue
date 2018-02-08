@@ -3,7 +3,6 @@
 </template>
 <script>
 
-import Home from './components/Home'
 export default {
  name:'App',
  components:{
@@ -53,6 +52,20 @@ export default {
         width:180px;
         background:#fff;
         color:#585858;
+    }
+    .user-main{
+        width:1005px;
+        background:#fff;
+        float:right;
+        height:500px;
+        .contents{
+            padding:20px;
+            .title{
+                font-size:18px;
+                margin-bottom:20px;
+            }
+            
+        }
     }
 </style>
 

@@ -29,6 +29,11 @@ const store=new Vuex.Store({    //实例化store
     }
 })
 
+/**引入axios 加入Vue原型 */
+import axios from 'axios';
+axios.defaults.baseURL='http://www.cc.com/api/account/';
+Vue.prototype.$axios=axios
+
 
 /**实例化Vue */
 new Vue({
