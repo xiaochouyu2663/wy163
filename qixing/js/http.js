@@ -1,1 +1,0 @@
-var http="http://wechat.trtjklife.com/controller/getContent.php?trigger=";
