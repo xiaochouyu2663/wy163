@@ -5,6 +5,18 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import Layout from '../components/Layout'
 import UserCenter from '../components/user/UserCenter'
+import Message from '../components/user/Message'
+import Safety from '../components/user/Safety'
+import Address from '../components/user/Address'
+import Updatepwd from '../components/user/Updatepwd'
+import Shops from '../components/user/Shops'
+import Personal from '../components/user/Personal'
+import Partner from '../components/user/Partner'
+import Share from '../components/user/Share'
+import Comment from '../components/user/Comment'
+import Integral from '../components/user/Integral'
+import Returnmoney from '../components/user/Returnmoney'
+import Returngoods from '../components/user/Returngoods'
 Vue.use(Router)
 
 export default new Router({

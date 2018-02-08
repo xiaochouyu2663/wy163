@@ -30,7 +30,7 @@
 import axios from 'axios'
 import qs from 'qs';
 /** 全局设置axios  */
-axios.defaults.baseURL='http://www.demo.com/api/account/';
+axios.defaults.baseURL='http://www.cc.com/api/account/';
 // axios.defaults.headers['content-type']='application/x-www-form-urlencode';
 
 import Mhead from './Mhead.vue'

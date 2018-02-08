@@ -4,7 +4,7 @@
     <UserHead></UserHead>
     <div style="width:1200px;margin:15px auto 0;">
         <AsideMenu ></AsideMenu>
-        <div >sdfsf</div>
+        <div >个人中心</div>
     </div>
   </div>
 </template>
