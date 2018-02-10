@@ -1,6 +1,6 @@
 <template>
-    <mt-tabbar >
-      <mt-tab-item id="首页">
+    <mt-tabbar fixed>
+      <mt-tab-item id="首页" to="/MemberCenter">
          <img slot="icon" src="../../assets/images/icon_home_default.png">
         首页
       </mt-tab-item>
